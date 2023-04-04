@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>National Water Supply and Drainage Board</title>
+    <title>Aqua Guard</title>
 
     <!--Link Bootstrap css file-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -42,11 +42,11 @@
     <div class="row py-0">
         <div class="col-7">
         <div class="center" style="margin-top: 10%; text-align: center;">
-            <img style="height: auto;  width: 15%; align: center;" src="lib/upload/ui/Emblem_of_Sri_Lanka.svg.png" alt="">
+            <img style="height: auto;  width: 15%; align: center;" src="lib/upload/ui/logo.png" alt="">
             </div>
             <div class="center" style="margin-top: 5%;">
-            <h1 style="text-align: center; font-weight: 900; color:black;" >CRYSTAL CLEAR</h1>
-            <h4 style="text-align: center; font-weight: 900; color:black">Empowering clean water and sanitation for all</h1>
+            <h1 style="text-align: center; font-weight: 900; color:black; font-style:bold;" >AQUAGUARD</h1>
+            <h4 style="text-align: center; font-weight: 600; color:black">Defend your water, defend your health.</h4>
             </div>
         </div>
         <div class="col-5 px-5" id="loginback" style="height:100vh; margin: auto;">
@@ -67,7 +67,7 @@
                     <div class="form-row py-3">
                         <input type="submit" value="Login" style="border-radius: 25px;" class="btn btn-success"
                             name="btnLogin">
-                        <input type="reset" value="Clear" style="border-radius: 25px;" class="btn btn-outline-danger">
+                        <input type="reset" value="Clear" style="border-radius: 25px;" class="btn btn-danger">
 
                     </div>
                 </form>

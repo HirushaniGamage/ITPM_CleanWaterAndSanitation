@@ -58,7 +58,7 @@ echo($result);
     <div class="sub-cont">
       <div class="img">
         <div class="img-text m-up">
-          <img src="lib/upload/ui/Screenshot 2023-02-23 at 10.05.09 PM.png" style="width:80%;" alt="">
+          <img src="lib/upload/ui/pngwing.com (1).png" style="width:80%;" alt="">
           <h2 class="my-5">New here?</h2>
           <p>Defend your water, defend your health.</p>
         </div>

@@ -40,6 +40,8 @@
 </div>
 <script>
      $(document).on('click','#btnAddreq',function(e){
+
+
         e.preventDefault();
         var form = $("#addreqtForm")[0];
 
@@ -60,18 +62,22 @@
                     showConfirmButton: false,
                     timer: 1500
                     })
-                }else{
-                    Swal.fire(
-                    'Somethin Wrong',
-                    'error')
-                }
-                 
-                $("#name").val("");
-                $("#phone").val("");
-                $("#date").val("");
-                $("#address").val("");
-                $("#remark").val("");
 
+                    $("#name").val("");
+                    $("#phone").val("");
+                    $("#date").val("");
+                    $("#address").val("");
+                    $("#remark").val("");
+
+                }else{
+                   Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Something Wrong',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                }
             },
             error: function (data) {
                 swal.fire(data);

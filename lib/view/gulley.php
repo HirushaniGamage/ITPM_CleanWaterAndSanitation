@@ -81,7 +81,7 @@ include_once('../layout/app.php');
                 </div>
             </nav>
            <div class="container" id="adminloadContent">
-            hellow
+            <img src="../upload/ui/Hydratation-amico.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
            </div>
         </main>
     </div>

@@ -6,5 +6,5 @@
     session_destroy();
 
     //reserect user bak to login
-    header('location:../view/login.php');
+    header('location:../../index.php');
 ?>

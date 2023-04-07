@@ -20,7 +20,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-    Aqua Guard
+    Aqua Guard-Gulley Service
     </title>
 </head>
 
@@ -42,8 +42,17 @@ include_once('../layout/app.php');
                         <li class="header-menu">
                             <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
                         </li>
-                        <li class="header-menu">
-
+                        <li>
+                            <a href="User.php">
+                            <i class="fas fa-ellipsis-h"></i>
+                                <span>Main Menu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="makereq">
+                            <i class="fas fa-handshake"></i>
+                                <span>Make Request</span>
+                            </a>
                         </li>
                         <hr>
                     </ul>
@@ -71,9 +80,15 @@ include_once('../layout/app.php');
                     </div>
                 </div>
             </nav>
-           
+           <div class="container" id="adminloadContent">
+            hellow
+           </div>
         </main>
     </div>
 </body>
-
+<script>
+    $('#makereq').click(function(){
+        $('#adminloadContent').load('gulley/addrequest.php');
+    });
+</script>
 </html>

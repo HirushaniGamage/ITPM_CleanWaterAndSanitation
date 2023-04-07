@@ -1,13 +1,19 @@
 <?php
-//star the session
 session_start();
-//chek its logd in?
-if(empty($_SESSION['user_id'])){
-  header('location:login.php');
+
+if(empty($_SESSION['login_email'])){
+//redirect user backto login
+header('location:../../index.php');
+
 }
-
-
+if(($_SESSION['type'])!= "User"){
+    //redirect user backto login
+    header('location:../../index.php');
+    
+    }
+//link app/php file
 include_once('../layout/app.php');
+
 ?>
 
 <!DOCTYPE html>

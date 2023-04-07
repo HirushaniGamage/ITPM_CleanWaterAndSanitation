@@ -6,7 +6,7 @@ if(empty($_SESSION['login_email'])){
 header('location:../../index.php');
 
 }
-if(($_SESSION['type'])!= "Admin"){
+if(($_SESSION['type'])!= "User"){
     //redirect user backto login
     header('location:../../index.php');
     
@@ -20,7 +20,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-    Aqua Guard-Admin
+    Aqua Guard-Water Service
     </title>
 </head>
 
@@ -44,40 +44,11 @@ include_once('../layout/app.php');
                         </li>
                         <li>
                             <a href="User.php">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Water Request</span>
+                            <i class="fas fa-ellipsis-h"></i>
+                                <span>Main Menu</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-hand-holding-water"></i>
-                                <span>All Water Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-comment"></i>
-                                <span>All Water Feedbacks</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Gulley Request</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-recycle"></i>
-                                <span>All Gulley Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-comment"></i>
-                                <span>All Gulley Feedbacks</span>
-                            </a>
-                        </li>
+                        <hr>
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->

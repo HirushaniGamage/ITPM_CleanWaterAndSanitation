@@ -57,7 +57,8 @@ public function Authentication($userName,$pwd){
                             //lets create sessions 
                             $_SESSION['user_id'] = $rec['user_id'];
                             $_SESSION['login_email'] = $rec['login_email'];
-                              
+                            $_SESSION['type'] = "User";
+
                             if(!isset($_COOKIE[$location]))
                             {
                               header('location:lib/view/user.php');
@@ -76,6 +77,7 @@ public function Authentication($userName,$pwd){
                                 //lets create sessions 
                                 $_SESSION['user_id'] = $rec['user_id'];
                                 $_SESSION['login_email'] = $rec['login_email'];
+                                $_SESSION['type'] = "Admin";
 
           
                                 //lets redirect user

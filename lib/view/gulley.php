@@ -6,7 +6,7 @@ if(empty($_SESSION['login_email'])){
 header('location:../../index.php');
 
 }
-if(($_SESSION['type'])!= "Admin"){
+if(($_SESSION['type'])!= "User"){
     //redirect user backto login
     header('location:../../index.php');
     
@@ -20,7 +20,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-    Aqua Guard-Admin
+    Aqua Guard-Gulley Service
     </title>
 </head>
 
@@ -44,40 +44,17 @@ include_once('../layout/app.php');
                         </li>
                         <li>
                             <a href="User.php">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Water Request</span>
+                            <i class="fas fa-ellipsis-h"></i>
+                                <span>Main Menu</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
-                            <i class="fas fa-hand-holding-water"></i>
-                                <span>All Water Jobs</span>
+                            <a href="#" id="makereq">
+                            <i class="fas fa-handshake"></i>
+                                <span>Make Request</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-comment"></i>
-                                <span>All Water Feedbacks</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Gulley Request</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-recycle"></i>
-                                <span>All Gulley Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="User.php">
-                            <i class="fas fa-comment"></i>
-                                <span>All Gulley Feedbacks</span>
-                            </a>
-                        </li>
+                        <hr>
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->
@@ -103,9 +80,15 @@ include_once('../layout/app.php');
                     </div>
                 </div>
             </nav>
-           
+           <div class="container" id="adminloadContent">
+            hellow
+           </div>
         </main>
     </div>
 </body>
-
+<script>
+    $('#makereq').click(function(){
+        $('#adminloadContent').load('gulley/addrequest.php');
+    });
+</script>
 </html>

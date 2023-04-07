@@ -2,13 +2,10 @@
         <div class="row">
             <div class="col-6">
                 <h5>All Request List</h5>
-                <input class="form-control mx-1 my-1" type="hidden" value="<?php
-                                                        //chek the user session
-                                                    if(empty($_SESSION['user_id'])){}
-                                                    else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
+                <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
             </div>
             <div class="col-6">
-                <input class="form-control mx-1 my-1" type="search" name="searchData" id="search_emp" placeholder="Search employer">
+                <input class="form-control mx-1 my-1" type="search" name="searchData" id="search_emp" placeholder="Search Request">
             </div>
         </div>
         <hr>
@@ -31,56 +28,47 @@
     </div>
     <div id="edit">
     <div class="form-group py-1 ">
-                        <label for="staticEmail" class="col-form-label px=2 my-2">Name</label>
-                            <input type="hidden"id="uid" class="form-control "> 
-                            <input type="text"id="userName" class="form-control "> 
-                        </div>
-                        <div class="form-group mt-1">
-                        <label for="staticEmail" class="col-form-label">Phone Number</label>
-                            <input type="text" id="userPhone" class="form-control">    
-                        </div>
-                        <div class="form-group mt-1">
-                        <label for="staticEmail" class=" col-form-label">NIC</label>
-                            <input type="text" id="userNIC" class="form-control">
-                        </div>
-                        <div class="form-group col-md-6 mt-2">
-                            <select class="form-select" name="empJobTitle" id="empJobTitle">
-                                <option value="0">Select Job Position</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Manager">Manager</option>
-                                <option value="Store Keeper">Store Keeper</option>
-                                <option value="Designer">Delivery Man</option>
-                                <option value="Technical Officer">Cashier</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6 mt-2">
-                            <select class="form-select" name="empJobType" id="empJobType">
-                                <option value="0">Select Job Type</option>
-                                <option value="Full Time">Full Time</option>
-                                <option value="Part Time">Part Time</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6 mt-2">
-                            <select class="form-select" name="empJobLevel" id="empJobLevel">
-                                <option value="0">Select Job Level</option>
-                                <option value="Tranee">Tranee</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Junior">Junior</option>
-                                <option value="Senior">Senior</option>
-                            </select>
-                        </div>
-                        <div class="form-group my-2">
-                            <button class="btn btn-success" onclick="edit()">Edit Data</button>
+    <form id="addreqtForm"  enctype="multipart/form-data">
+            <div class="form-group mt-2">
+            <label for="">Name</label>
+                <input type="hidden" name="id" id="id" class="form-control" placeholder="Name">
+                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group col-6 mt-2">
+            <label for="">Phone Number</label>
+                <input type="number" name="phone" id="phone" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+            
+                <label for="">Location Address</label>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Location Address">
+            </div>
+            <div class="form-group col-6 mt-2">
+            <label for="">Request Date</label>
+                <input type="date" name="date" id="date" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+            <label for="">Remark</label>
+                <input type="text" name="remark" id="remark" class="form-control" placeholder="Remark">
+            </div>
+            <div class="form-group my-2">
+                            <button class="btn btn-success" onclick="edit(); return false;">Edit Data</button>
 
-                            <button class="btn btn-secondary" onclick="backlist()">User List</button>
+                            <button class="btn btn-secondary" onclick="backlist(); return false;">Request List</button>
                         </div>
-                </div>
+        </form>
+</div>
     </div>
     <script>
+            $uid="";
+            $uid = $("#userid").val();
+            $("#uid").val($uid);
          $(document).ready(function(){
         $('#edit').hide();
-$id =$("#userid").val();
+        
         //send an ajax request at loading employers
+        $id =$("#userid").val();
         $.get("../routes/gulley/req_list.php",{
             id:$id
         }, function (res) {
@@ -93,16 +81,18 @@ $id =$("#userid").val();
             $inputData = $(this).val();
 
             //send an ajax request 
-            $.get("../routes/emp/empsearch.php",{searchData:$inputData},function(res){
+            $.get("../routes/gulley/reqsearch.php",{
+                searchData:$inputData,
+                id: $id},function(res){
                 $("#emp_list").html(res);
             })
         })
     })
 
-    function deleteemp(oid){
+    function delete_req(oid){
         Swal.fire({
         title: 'Are you sure?',
-        text: "Do You want to delete this user permanently!",
+        text: "Do You want to delete this request permanently!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -111,29 +101,34 @@ $id =$("#userid").val();
         }).then((result) => {
         if (result.isConfirmed) 
         {
-            $.get("../routes/emp/delete_emp.php",{
+            $.get("../routes/gulley/delete_gulley.php",{
                 uid:oid
             },function (res) {
                 if(res="ok"){
                     Swal.fire(
                     'Successful!',
-                    'Your Deleted User Account.',
+                    'Your Request Delete Successfully.',
                     'success'
                     )
-                    $.get("../routes/emp/emp_list.php", function (res) {
-                        //display data 
-                        $("#emp_list").html(res);
-        })
+
+                    $id =$("#userid").val();
+                    $.get("../routes/gulley/req_list.php",{
+                        id:$id
+                    }, function (res) {
+                    //display data 
+                    $("#emp_list").html(res);
+                    })
+
                 }
                 else if (res="no"){
                     Swal.fire(
                     'Somethin Wrong',
-                    'You can not delete Loged User Account.',
+                    'You can not delete this request.',
                     'error')
                 }else{
                     Swal.fire(
                     'Somethin Wrong',
-                    'Can not delete user.',
+                    'Can not delete request.',
                     'error')
                 }
             })
@@ -146,23 +141,23 @@ $id =$("#userid").val();
         $('#edit').hide();
      }
 
-     function editemp(uid){
+     function editreq(uid){
          $userid = uid;
 
         $('#list').hide();
         $('#edit').show();
 
-        $.get("../routes/emp/getuserdata.php", {
+        $.get("../routes/gulley/getreqdata.php", {
         uid:uid
         }, function (res) {
         var jdata = jQuery.parseJSON(res);
-            $("#uid").val(jdata.emp_Id);
-            $("#userName").val(jdata.emp_FirstName);
-            $("#userPhone").val(jdata.emp_Phone);
-            $("#userNIC").val(jdata.emp_Nic);
-            $("#empJobTitle").val(jdata.emp_JobTitle);
-            $("#empJobType").val(jdata.emp_JobType);
-            $("#empJobLevel").val(jdata.emp_JobLevel);
+            $("#id").val(jdata.id);
+            $("#name").val(jdata.name);
+            $("#uid").val(jdata.user_id);
+            $("#phone").val(jdata.phone);
+            $("#address").val(jdata.address);
+            $("#date").val(jdata.date);
+            $("#remark").val(jdata.remark);
            
         })
      }
@@ -170,17 +165,17 @@ $id =$("#userid").val();
 
         
      function edit(){
-            $uid = $("#uid").val();
-            $name = $("#userName").val();
-            $phone = $("#userPhone").val();
-            $nic = $("#userNIC").val();
-            $title = $("#empJobTitle").val();
-            $type = $("#empJobType").val();
-            $level = $("#empJobLevel").val();
+            $id = $("#id").val();
+            $name = $("#name").val();
+            $phone = $("#phone").val();
+            $address = $("#address").val();
+            $date = $("#date").val();
+            $remark = $("#remark").val();
+            $userid = $("#uid").val();
 
         Swal.fire({
         title: 'Are you sure?',
-        text: "Did You want to edit this Employer details!",
+        text: "Did You want to edit this Request details!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -189,14 +184,14 @@ $id =$("#userid").val();
         }).then((result) => {
         if (result.isConfirmed) 
         {
-            $.get("../routes/emp/editdata.php",{
-                id: $uid,
+            $.get("../routes/gulley/editdata.php",{
+                id: $id,
                 un: $name,
                 ph: $phone,
-                nic: $nic,
-                ti: $title,
-                ty: $type,
-                le: $level
+                add: $address,
+                da: $date,
+                rk: $remark,
+                ui: $userid
             },function (res) {
                 if(res="ok"){
             Swal.fire(
@@ -208,10 +203,13 @@ $id =$("#userid").val();
             $('#edit').hide();
 
              //send an ajax request at loading employers
-                $.get("../routes/emp/emp_list.php", function (res) {
-                //display data 
-                $("#emp_list").html(res);
-                })
+             $id =$("#userid").val();
+                    $.get("../routes/gulley/req_list.php",{
+                        id:$id
+                    }, function (res) {
+                    //display data 
+                    $("#emp_list").html(res);
+                    })
                 }
                 else{
                     Swal.fire(

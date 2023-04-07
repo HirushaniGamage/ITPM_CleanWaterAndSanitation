@@ -54,6 +54,12 @@ include_once('../layout/app.php');
                                 <span>Make Request</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#" id="reqlist">
+                            <i class="fas fa-stream"></i>
+                                <span>All Request</span>
+                            </a>
+                        </li>
                         <hr>
                     </ul>
                 </div>
@@ -89,6 +95,10 @@ include_once('../layout/app.php');
 <script>
     $('#makereq').click(function(){
         $('#adminloadContent').load('gulley/addrequest.php');
+    });
+
+    $('#reqlist').click(function(){
+        $('#adminloadContent').load('gulley/requestlist.php');
     });
 </script>
 </html>

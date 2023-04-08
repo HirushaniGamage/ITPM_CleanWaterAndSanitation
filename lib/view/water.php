@@ -48,6 +48,18 @@ include_once('../layout/app.php');
                                 <span>Main Menu</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#" id="makereq">
+                            <i class="fas fa-handshake"></i>
+                                <span>Make Request</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="reqlist">
+                            <i class="fas fa-stream"></i>
+                                <span>All Request</span>
+                            </a>
+                        </li>
                         <hr>
                     </ul>
                 </div>
@@ -74,9 +86,23 @@ include_once('../layout/app.php');
                     </div>
                 </div>
             </nav>
-           
+            <input class="form-control mx-1 my-1" type="hidden" value="<?php
+                                                        //chek the user session
+                                                    if(empty($_SESSION['user_id'])){}
+                                                    else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
+           <div class="container" id="adminloadContent">
+            <img src="../upload/ui/Hydratation-amico.png"  style="width:100%; display: block; margin-left: auto; margin-right: auto; margin-top:80px; margin-bottom:20px;" alt="">
+           </div>
         </main>
     </div>
 </body>
+<script>
+     $('#makereq').click(function(){
+        $('#adminloadContent').load('water/addrequest.php');
+    });
 
+    $('#reqlist').click(function(){
+        $('#adminloadContent').load('water/requestlist.php');
+    });
+</script>
 </html>

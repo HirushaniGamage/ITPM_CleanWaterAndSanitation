@@ -37,6 +37,11 @@ $(document).ready(function () {
                                 icon: 'success',
                                 text: 'Successfully Regeisterd!',
                             });
+                            $("#userName1").val("");
+                            $("#userEmail").val("");
+                            $("#userPhone").val("");
+                            $("#userPwd1").val("");
+                            $("#reuserPwd").val("");
                         }
                         else if( res =="04"){
                             Swal.fire({

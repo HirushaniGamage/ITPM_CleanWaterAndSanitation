@@ -89,6 +89,8 @@
         })
     })
 
+
+
     function delete_req(oid){
         Swal.fire({
         title: 'Are you sure?',
@@ -162,6 +164,117 @@
         })
      }
 
+     function date(oid){
+        let datepicker
+
+            Swal.fire({
+            icon:'warning',
+            title: 'Please enter New date',
+            input: 'text',
+            inputValue: new Date().toISOString(),
+            stopKeydownPropagation: false,
+            preConfirm: () => {
+                if (datepicker.getDate() < new Date(new Date().setHours(0, 0, 0,0))) {
+                Swal.showValidationMessage(`The departure date can't be in the past`)
+                }
+                const dateStr = datepicker; // replace with your date string in yyyy-mm-dd format
+                const dateObj = new Date(dateStr);// replace with your date object
+                const year = dateObj.getFullYear();
+                const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+                const day = dateObj.getDate().toString().padStart(2, "0");
+                const formattedDate = `${year}-${month}-${day}`; // get the first 15 characters of the date string
+
+                // alert(datepicker);
+                $.get("../routes/gulley/nextdate.php",{
+                uid:oid,
+                date:formattedDate
+            },function (res) {
+                if(res="ok"){
+                    Swal.fire(
+                    'Successful!',
+                    'Your Request send Successfully.',
+                    'success'
+                    )
+
+                    $id =$("#userid").val();
+                    $.get("../routes/gulley/req_listadmin.php", function (res) {
+                    //display data 
+                    $("#emp_list").html(res);
+                    })
+
+                }
+                else if (res="no"){
+                    Swal.fire(
+                    'Somethin Wrong',
+                    'You can not send this request.',
+                    'error')
+                }else{
+                    Swal.fire(
+                    'Somethin Wrong',
+                    'Can not send request.',
+                    'error')
+                }
+            })
+            
+                
+            },
+            didOpen: () => {
+                datepicker = new Pikaday({ field: Swal.getInput() })
+                setTimeout(() => datepicker.show(), 400) // show calendar after showing animation
+               
+            },
+            didClose: () => {
+                datepicker.destroy()
+             
+            },
+            }).then((result) => {
+            console.log(result.value)
+          
+            })
+        // Swal.fire({
+        //     icon: 'warning',
+        //     title: 'Submit Another Date ',
+        //     input: 'text',
+        //     inputValue: new Date().toISOString(),
+        //     id:"rangec",
+        //     inputValue: 0.00,
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Re-Request Job',
+        //     showLoaderOnConfirm: true,
+        //     preConfirm: function(value) {
+        //         $.get("../routes/gulley/nextdate.php",{
+        //         uid:oid,
+        //         date:value
+        //     },function (res) {
+        //         if(res="ok"){
+        //             Swal.fire(
+        //             'Successful!',
+        //             'Your Request send Successfully.',
+        //             'success'
+        //             )
+
+        //             $id =$("#userid").val();
+        //             $.get("../routes/gulley/req_listadmin.php", function (res) {
+        //             //display data 
+        //             $("#emp_list").html(res);
+        //             })
+
+        //         }
+        //         else if (res="no"){
+        //             Swal.fire(
+        //             'Somethin Wrong',
+        //             'You can not send this request.',
+        //             'error')
+        //         }else{
+        //             Swal.fire(
+        //             'Somethin Wrong',
+        //             'Can not send request.',
+        //             'error')
+        //         }
+        //     })
+        //     }
+        // })
+     }
 
         
      function edit(){

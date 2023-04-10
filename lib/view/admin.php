@@ -43,37 +43,37 @@ include_once('../layout/app.php');
                             <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#" id="allwaterrewuest">
                             <i class="fas fa-retweet"></i>
                                 <span>All Water Request</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#">
                             <i class="fas fa-hand-holding-water"></i>
                                 <span>All Water Jobs</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#">
                             <i class="fas fa-comment"></i>
                                 <span>All Water Feedbacks</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#" id="allgulleyrewuest">
                             <i class="fas fa-retweet"></i>
                                 <span>All Gulley Request</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#">
                             <i class="fas fa-recycle"></i>
                                 <span>All Gulley Jobs</span>
                             </a>
                         </li>
                         <li>
-                            <a href="User.php">
+                            <a href="#">
                             <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
                             </a>
@@ -103,9 +103,23 @@ include_once('../layout/app.php');
                     </div>
                 </div>
             </nav>
-           
+            <input class="form-control mx-1 my-1" type="hidden" value="<?php
+                                                        //chek the user session
+                                                    if(empty($_SESSION['user_id'])){}
+                                                    else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
+           <div class="container" id="adminloadContent">
+            <img src="../upload/ui/Admin-bro.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
+           </div>
         </main>
     </div>
 </body>
+<script>
+      $('#allgulleyrewuest').click(function(){
+        $('#adminloadContent').load('gulley/allrequest.php');
+    });
 
+    $('#allwaterrewuest').click(function(){
+        $('#adminloadContent').load('water/allrequest.php');
+    });
+</script>
 </html>

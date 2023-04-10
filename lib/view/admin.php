@@ -67,7 +67,7 @@ include_once('../layout/app.php');
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" id="todojobcards">
                             <i class="fas fa-recycle"></i>
                                 <span>All Gulley Jobs</span>
                             </a>
@@ -120,6 +120,10 @@ include_once('../layout/app.php');
 
     $('#allwaterrewuest').click(function(){
         $('#adminloadContent').load('water/allrequest.php');
+    });
+
+    $('#todojobcards').click(function(){
+        $('#adminloadContent').load('gulley/allrequesttodo.php');
     });
 </script>
 </html>

@@ -29,14 +29,8 @@
     </div>
     
     <script>
-            $uid="";
-            $uid = $("#userid").val();
-            $("#uid").val($uid);
          $(document).ready(function(){
-        $('#edit').hide();
-        
-        //send an ajax request at loading employers
-        $id =$("#userid").val();
+       
         $.get("../routes/gulley/req_listadmin.php",{}, function (res) {
         //display data 
         $("#emp_list").html(res);

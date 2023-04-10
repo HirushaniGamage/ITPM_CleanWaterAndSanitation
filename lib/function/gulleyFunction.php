@@ -93,18 +93,6 @@ public function gulleyList($id){
        </tr>
               ');
       }
-      else if($rec['admin'] == 1){
-        echo('
-        <tr class="table-success">
-          <th >'.$rec['id'].'</th>
-          <td>'.$rec['name'].'</td>
-          <td>'.$rec['date'].'</td>
-          <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-success">Approved</span></td>
-          <td> </td></td>
-       </tr>
-              ');
-      }
       else if($rec['done'] == 0){
         echo('
         <tr>
@@ -125,6 +113,7 @@ public function gulleyList($id){
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
           <td><span class="badge bg-success">Compleated</span></td>
+          <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button></td>
           <td></td>
        </tr>
               ');
@@ -160,26 +149,71 @@ $nor = $sqlResult->num_rows;
 
 if($nor > 0){
   while($rec = $sqlResult->fetch_assoc()){
-    $status = "";
-    if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
-    else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
-    else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
-    else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
+    if($rec['admin'] == 0){
       echo('
       <tr>
         <th >'.$rec['id'].'</th>
         <td>'.$rec['name'].'</td>
         <td>'.$rec['date'].'</td>
         <td>'.$rec['price'].'</td>
-        <td>'.$status.'</td>
+        <td><span class="badge bg-warning">Warning for approval</span></td>
         <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td>
      </tr>
+            ');}
+     else if($rec['admin'] == 3){
+      echo('
+      <tr>
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['price'].'</td>
+        <td><span class="badge bg-warning">Warning for New Date</span></td>
+        <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-info">New Date</button></td>
+     </tr>
             ');
+    }
+    else if($rec['admin'] == 2){
+      echo('
+      <tr class="table-danger">
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['price'].'</td>
+        <td><span class="badge bg-danger">Declared</span></td>
+        <td> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td></td>
+     </tr>
+            ');
+    }
+    else if($rec['done'] == 0){
+      echo('
+      <tr>
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['price'].'</td>
+        <td><span class="badge bg-info">waiting for date</span></td>
+        <td><button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-info">New Date</button></td>
+     </tr>
+            ');
+    }
+    else if($rec['done'] == 1){
+      echo('
+      <tr>
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['price'].'</td>
+        <td><span class="badge bg-success">Compleated</span></td>
+        <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button></td>
+          
+     </tr>
+            ');
+    }
   }
 }
 else {echo('
   <div class="alert alert-warning" role="alert">
-  No Requests Are Found!
+  No requests Are Found!
 </div>');
 }
 }
@@ -275,8 +309,85 @@ else {echo('
 }
 
 
+public function todogulleyListA(){
+
+  $sqlSelect = "SELECT * FROM gulley_tbl WHERE d_status = 0 AND (admin =1 AND done !=1) ORDER BY gulley_tbl.id ASC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    while($rec = $sqlResult->fetch_assoc()){
+      $status = "";
+      if($rec['done'] = 0){echo('
+        <tr class="table-warning">
+          <th >'.$rec['id'].'</th>
+          <td>'.$rec['date'].'</td>
+          <td>'.$rec['remark'].'</td>
+          <td>'.$rec['name'].'</td>
+          <td>'.$rec['phone'].'</td>
+          <td>'.$rec['address'].'</td>
+          <td><button type="button" onclick="start(\''.$rec['id'].'\');" class="btn btn-success">Start</button></td>
+       </tr>
+              ');}
+      else  if($rec['done'] = 2){echo('
+      <tr class="table-danger"> 
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['remark'].'</td>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['phone'].'</td>
+        <td>'.$rec['address'].'</td>
+        <td><button type="button" onclick="end(\''.$rec['id'].'\');" class="btn btn-success">Complete</button></td>
+     </tr>
+            ');}
+        
+    }
+  }
+  else {echo('
+    <div class="alert alert-warning" role="alert">
+    No Request Are Found!
+  </div>');
+  }
+}
+
 public function declare($uid){
   $update1 = "UPDATE gulley_tbl SET admin = 2 WHERE  id = '$uid' AND d_status = 0;";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($update1);
+
+    return("ok"); 
+ 
+ }
+
+ public function start($uid){
+  $update1 = "UPDATE gulley_tbl SET done = 2 WHERE  id = '$uid' AND d_status = 0;";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($update1);
+
+    return("ok"); 
+ 
+ }
+
+ public function end($uid){
+  $update1 = "UPDATE gulley_tbl SET done = 1 WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){
    echo($this->dbResult->error);

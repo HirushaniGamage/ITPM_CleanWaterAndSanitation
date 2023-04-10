@@ -89,8 +89,6 @@
         })
     })
 
-
-
     function delete_req(oid){
         Swal.fire({
         title: 'Are you sure?',
@@ -231,51 +229,7 @@
             console.log(result.value)
           
             })
-        // Swal.fire({
-        //     icon: 'warning',
-        //     title: 'Submit Another Date ',
-        //     input: 'text',
-        //     inputValue: new Date().toISOString(),
-        //     id:"rangec",
-        //     inputValue: 0.00,
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Re-Request Job',
-        //     showLoaderOnConfirm: true,
-        //     preConfirm: function(value) {
-        //         $.get("../routes/gulley/nextdate.php",{
-        //         uid:oid,
-        //         date:value
-        //     },function (res) {
-        //         if(res="ok"){
-        //             Swal.fire(
-        //             'Successful!',
-        //             'Your Request send Successfully.',
-        //             'success'
-        //             )
-
-        //             $id =$("#userid").val();
-        //             $.get("../routes/gulley/req_listadmin.php", function (res) {
-        //             //display data 
-        //             $("#emp_list").html(res);
-        //             })
-
-        //         }
-        //         else if (res="no"){
-        //             Swal.fire(
-        //             'Somethin Wrong',
-        //             'You can not send this request.',
-        //             'error')
-        //         }else{
-        //             Swal.fire(
-        //             'Somethin Wrong',
-        //             'Can not send request.',
-        //             'error')
-        //         }
-        //     })
-        //     }
-        // })
-     }
-
+        }
         
      function edit(){
             $id = $("#id").val();

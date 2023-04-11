@@ -73,7 +73,7 @@ include_once('../layout/app.php');
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" id="allrequestrate">
                             <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
                             </a>
@@ -124,6 +124,10 @@ include_once('../layout/app.php');
 
     $('#todojobcards').click(function(){
         $('#adminloadContent').load('gulley/allrequesttodo.php');
+    });
+
+    $('#allrequestrate').click(function(){
+        $('#adminloadContent').load('gulley/allrequestrate.php');
     });
 </script>
 </html>

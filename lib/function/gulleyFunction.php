@@ -113,8 +113,9 @@ public function gulleyList($id){
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
           <td><span class="badge bg-success">Compleated</span></td>
-          <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button></td>
-          <td></td>
+          <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>
+          <button type="button" onclick="print(\''.$rec['id'].'\');" class="btn btn-success">Print bill</button></td>
+          </td>
        </tr>
               ');
       }
@@ -204,7 +205,8 @@ if($nor > 0){
         <td>'.$rec['date'].'</td>
         <td>'.$rec['price'].'</td>
         <td><span class="badge bg-success">Compleated</span></td>
-        <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button></td>
+        <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>
+        <button type="button" onclick="print(\''.$rec['id'].'\');" class="btn btn-info">Print bill</button></td>
           
      </tr>
             ');
@@ -358,8 +360,55 @@ public function todogulleyListA(){
   }
 }
 
+public function feedbacklist(){
+
+  $sqlSelect = "SELECT * FROM gulley_tbl WHERE d_status = 0 AND done =1 AND feedback != '0' ORDER BY gulley_tbl.id ASC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    while($rec = $sqlResult->fetch_assoc()){echo('
+        <tr>
+          <th >'.$rec['id'].'</th>
+          <td>'.$rec['date'].'</td>
+          <td>'.$rec['name'].'</td>
+          <td>'.$rec['phone'].'</td>
+          <td>'.$rec['feedback'].'</td>
+       </tr>
+              ');
+    }
+  }
+  else {echo('
+    <div class="alert alert-warning" role="alert">
+    No Feedbacks Are Found!
+  </div>');
+  }
+}
+
 public function declare($uid){
   $update1 = "UPDATE gulley_tbl SET admin = 2 WHERE  id = '$uid' AND d_status = 0;";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($update1);
+
+    return("ok"); 
+ 
+ }
+
+ public function feedback($uid, $rate){
+  $update1 = "UPDATE gulley_tbl SET feedback = '$rate' WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){
    echo($this->dbResult->error);

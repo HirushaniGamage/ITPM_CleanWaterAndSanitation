@@ -114,7 +114,7 @@ public function gulleyList($id){
           <td>'.$rec['price'].'</td>
           <td><span class="badge bg-success">Compleated</span></td>
           <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>
-          <button type="button" onclick="print(\''.$rec['id'].'\');" class="btn btn-success">Print bill</button></td>
+          <button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-success">Print bill</button></td>
           </td>
        </tr>
               ');
@@ -206,7 +206,7 @@ if($nor > 0){
         <td>'.$rec['price'].'</td>
         <td><span class="badge bg-success">Compleated</span></td>
         <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>
-        <button type="button" onclick="print(\''.$rec['id'].'\');" class="btn btn-info">Print bill</button></td>
+        <button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info">Print bill</button></td>
           
      </tr>
             ');

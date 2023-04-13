@@ -128,6 +128,11 @@
             })
         }
 
+        function bill($oid){
+  window.open("invoice/gulleyprint.php?id="+$oid+"",
+                    " Aqua Guard", "width=600, height=600");
+}
+
         function delete_req(oid) {
             Swal.fire({
                 title: 'Are you sure?',

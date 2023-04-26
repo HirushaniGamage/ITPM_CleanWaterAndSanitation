@@ -89,7 +89,7 @@
                     $("#emp_list").html(res);
                 })
             })
-        })
+         })
 
         function feedback(id) {
             Swal.fire({

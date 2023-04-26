@@ -100,8 +100,8 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-info">waiting for date</span></td>
-          <td><button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-info">New Date</button></td>
+          <td><span class="badge bg-info">waiting for Completion</span></td>
+          <td></td>
        </tr>
               ');
       }

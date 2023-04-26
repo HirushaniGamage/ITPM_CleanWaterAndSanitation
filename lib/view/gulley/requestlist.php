@@ -17,7 +17,7 @@
                     <th scope="row">Request Id</th>
                     <td>Name</td>
                     <td>Date</td>
-                    <td>Remark</td>
+                    <td>Price</td>
                     <td>Status</td>
                     <td>Action</td>
                 </tr>

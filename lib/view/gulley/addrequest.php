@@ -7,16 +7,14 @@
             <div class="form-group mt-2">
             <label for="">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
             </div>
             <div class="form-group col-6 mt-2">
             <label for="">Phone Number</label>
                 <input type="number" name="phone" id="phone" class="form-control">
             </div>
             <div class="form-group mt-2">
-            <input class="form-control mx-1 my-1" type="hidden" value="<?php
-                                                        //chek the user session
-                                                    if(empty($_SESSION['user_id'])){}
-                                                    else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
+            
                 <label for="">Location Address</label>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Location Address">
             </div>
@@ -39,7 +37,13 @@
     </div>
 </div>
 <script>
+    $uid="";
+    $uid = $("#userid").val();
+    $("#uid").val($uid);
+
      $(document).on('click','#btnAddreq',function(e){
+
+
         e.preventDefault();
         var form = $("#addreqtForm")[0];
 
@@ -60,18 +64,22 @@
                     showConfirmButton: false,
                     timer: 1500
                     })
-                }else{
-                    Swal.fire(
-                    'Somethin Wrong',
-                    'error')
-                }
-                 
-                $("#name").val("");
-                $("#phone").val("");
-                $("#date").val("");
-                $("#address").val("");
-                $("#remark").val("");
 
+                    $("#name").val("");
+                    $("#phone").val("");
+                    $("#date").val("");
+                    $("#address").val("");
+                    $("#remark").val("");
+
+                }else{
+                   Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Something Wrong',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+                }
             },
             error: function (data) {
                 swal.fire(data);

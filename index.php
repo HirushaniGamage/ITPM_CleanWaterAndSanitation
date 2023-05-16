@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>CRYSTAL CLEAR</title>
+    <title>Aqua Guard</title>
 
     <!--Link Bootstrap css file-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -42,11 +42,11 @@
     <div class="row py-0">
         <div class="col-7">
         <div class="center" style="margin-top: 5%; text-align: center;">
-            <img style="height: auto;  width: 25%; align: center;" src="lib/upload/ui/logo.jpg" alt="">
+            <img style="height: auto;  width: 25%; align: center;" src="" alt="">
             </div>
             <div class="center" style="margin-top: 6%;">
-            <h1 style="text-align: center; font-weight: 900; color:blue;" >CRYSTAL CLEAR</h1>
-            <h1 style="text-align: center; font-weight: 900; color:black">Monitor your clean water and sanitation</h1>
+            <h1 style="text-align: center; font-weight: 900; color:black;" >Aqua Gaurd</h1>
+            <h1 style="text-align: center; font-weight: 900; color:black"></h1>
             </div>
         </div>
         <div class="col-5 px-5" id="loginback" style="height:100vh; margin: auto;">

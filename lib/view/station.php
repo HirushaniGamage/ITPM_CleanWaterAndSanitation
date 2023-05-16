@@ -17,7 +17,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-        National Water Supply and Drainage Board
+        Aqua Gaurd
     </title>
     <style>
         .clock {
@@ -36,7 +36,7 @@ include_once('../layout/app.php');
         <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
                 <div class="sidebar-brand">
-                    <a href="#" #style="color:blue">National Water Supply and Drainage Board</a>
+                    <a href="#" #style="color:blue">Aqua gaurd</a>
                     <div id="close-sidebar">
                         <i class="fas fa-chevron-left"></i>
                     </div>

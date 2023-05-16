@@ -17,7 +17,7 @@ include_once('../layout/app.php');
 
 <head>
   <title>
-  CRYSTAL CLEAR
+  AQUA GAURD
   </title>
   <style>
     
@@ -37,7 +37,7 @@ include_once('../layout/app.php');
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a href="" #style="color:blue">CRYSTAL CLEAR</a>
+          <a href="" #style="color:blue">AQUA GAURD</a>
           <div id="close-sidebar">
             <i class="fas fa-chevron-left"></i>
           </div>
@@ -95,12 +95,8 @@ include_once('../layout/app.php');
               </a>
             </li>
             <li>
-              <a id="sendemail">
-              <i class="far fa-envelope"></i>
-                <span>Send Email</span>
-              </a>
-            </li>
-            <li class="header-menu">
+             
+           <!--  <li class="header-menu">
               <span>Reports</span>
             </li>
             <li>
@@ -141,7 +137,7 @@ include_once('../layout/app.php');
             </li>
           </ul>
         </div>
-        <!-- End sidebar-menu  -->
+        <!-- End sidebar-menu  --> -->
       </div>
     </nav>
     <!-- rop Nav bar -->
@@ -164,69 +160,7 @@ include_once('../layout/app.php');
           </div>
         </div>
       </nav>
-      <!-- content top 4 cardsS -->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="row py-2 px-3">
-            <div class="col-3">
-              <div class="card shadow card border-shadow h-100 py-3 px-2 " id="cardadmin01">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Plant Count
-                    </div>
-                    <div class="h5 mb-0 text-gray-800" id="admin_product_count"></div>
-                  </div>
-                  <div class="col-auto">
-                  <i class="fas fa-charging-station fa-2x"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="card shadow card border-shadow h-100 py-3 px-2" id="cardadmin02">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Employee Count
-                    </div>
-                    <div class="h5 mb-0 text-gray-800" id="admin_user_count"></div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-users  fa-2x"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="card shadow card border-shadow h-100 py-3 px-2" id="cardadmin03">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Last Month Production 
-                    </div>
-                    <div class="h5 mb-0 text-gray-800" >12</div>
-                  </div>
-                  <div class="col-auto">
-                    <i class="fas fa-drafting-compass fa-2x"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="card shadow card border-shadow h-100 py-3 px-2" id="cardadmin04">
-                <div class="row no-gutters align-items-center">
-                  <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Last Month Cost
-                    </div>
-                    <div class="h5 mb-0 text-gray-800" id="admin_order_count">12</div>
-                  </div>
-                  <div class="col-auto">
-                  <i class="fas fa-dollar-sign fa-2x"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     
       <div class="row" >
       <input class="form-control mx-1 my-1" type="hidden" value="<?php
                                     //chek the user session

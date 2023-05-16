@@ -91,7 +91,7 @@ include_once('../layout/app.php');
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
            <div class="container" id="adminloadContent">
-            <img src="../upload/ui/Hydratation-amico.png"  style="width:100%; display: block; margin-left: auto; margin-right: auto; margin-top:80px; margin-bottom:20px;" alt="">
+            <img src="../upload/ui/Hydratation-amico.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
            </div>
         </main>
     </div>

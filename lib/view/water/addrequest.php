@@ -1,4 +1,4 @@
-<div class="">
+<div class="card border-success py-2 px-2">
     <h3>Make Request for Water Bowser Service</h3>
     <hr>
     <div class="row">
@@ -14,15 +14,20 @@
                 <input type="number" name="phone" id="phone" class="form-control">
             </div>
             <div class="form-group mt-2">
-            
                 <label for="">Location Address</label>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Location Address">
+            </div>
+            <div class="form-group mt-2">
+                <label for="">Near Plant Location</label>
+                <select class="form-select" name="plants" id="plants">
+                   
+                </select>
             </div>
             <div class="form-group col-6 mt-2">
             <label for="">Request Date</label>
                 <input type="date" name="date" id="date" class="form-control">
             </div>
-            
+            <label for="">Remark</label>
             <div class="form-group mt-2">
             <label for="">Request Capacity</label>
                 <input type="number" name="capacity" id="capacity" class="form-control">
@@ -44,6 +49,11 @@
 <script>
     $uid="";
     $uid = $("#userid").val();
+
+    $.get("../routes/plant/getallplantsdrop.php", function (res) {
+            //display data 
+            $("#plants").html(res);
+        })
     $("#uid").val($uid);
 
      $(document).on('click','#btnAddreq',function(e){
@@ -75,9 +85,27 @@
                     $("#date").val("");
                     $("#capacity").val("");
                     $("#address").val("");
+                    $("#plants").val("0");
                     $("#remark").val("");
 
-                }else{
+                }else if(data == "02"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'No water capacity in selected Plant',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
+                }else if(data == "03"){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'There are no available capacity to the date',
+                            showConfirmButton: false,
+                            timer: 1500
+                            })
+                }
+                else{
                    Swal.fire({
                     position: 'top-end',
                     icon: 'error',

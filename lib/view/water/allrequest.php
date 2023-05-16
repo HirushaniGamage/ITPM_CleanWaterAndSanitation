@@ -1,4 +1,4 @@
-<div class="card border-info py-2 px-2">
+<div class="card-body">
         <div class="row">
             <div class="col-6">
                 <h5>All Request List</h5>
@@ -17,7 +17,7 @@
                     <td>Name</td>
                     <td>Date</td>
                     <td>Capasity</td>
-                    <td>Price</td>
+                    <td>Remark</td>
                     <td>Status</td>
                     <td>Action</td>
                 </tr>
@@ -74,9 +74,7 @@
         
         //send an ajax request at loading employers
         $id =$("#userid").val();
-        $.get("../routes/water/req_list.php",{
-            id:$id
-        }, function (res) {
+        $.get("../routes/water/req_listadmin.php", function (res) {
         //display data 
         $("#emp_list").html(res);
         })
@@ -86,9 +84,8 @@
             $inputData = $(this).val();
 
             //send an ajax request 
-            $.get("../routes/water/reqsearch.php",{
-                searchData:$inputData,
-                id: $id},function(res){
+            $.get("../routes/water/reqsearchadmin.php",{
+                searchData:$inputData},function(res){
                 $("#emp_list").html(res);
             })
         })
@@ -106,7 +103,7 @@
         }).then((result) => {
         if (result.isConfirmed) 
         {
-            $.get("../routes/water/delete_water.php",{
+            $.get("../routes/water/delete_gulley.php",{
                 uid:oid
             },function (res) {
                 if(res="ok"){

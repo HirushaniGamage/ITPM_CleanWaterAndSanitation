@@ -1,12 +1,14 @@
 <?php
-// include function page(userFunction.php)
 
+//include function page 
 include_once('../../function/waterFunction.php');
 
+//call the class and create an object 
 $userObj = new Water();
 
-$result = $userObj->delete_gulley($_GET['uid']);
+$result = $userObj -> plantList();
 
 echo($result);
+
 
 ?>

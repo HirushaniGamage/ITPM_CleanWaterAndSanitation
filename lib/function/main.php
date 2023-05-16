@@ -13,7 +13,7 @@ class Main{
         $this->dbResult = $this->connObj->Conn();
 
         return($this->dbResult);
-    }
+    }
 }
 
 

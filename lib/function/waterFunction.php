@@ -11,7 +11,6 @@ include_once('auto_id.php');
 
 class Water extends Main{
 
-
   public function addplant($name, $Capacity){
 
     //generate new id for a product
@@ -242,8 +241,8 @@ $currentusage = 0.00;
    $productId = $autoNumber -> NumberGeneration("id","water_tbl","WTR");
 
    //insert product to databace
- 
-  $sqlInsert2 = "INSERT INTO water_tbl VALUES('$productId','$name','$phone','$user','$address','$plantid',
+
+  $sqlInsert2 = "INSERT INTO water_tbl VALUES('$productId','$name','$phone','$user','$address',
   '$date','$remark','$capacity',0,0,0,0,0,0);";
 
   //lets check the errors 
@@ -259,14 +258,17 @@ $currentusage = 0.00;
   }else{
   return("Please Try again later!");
   }
+
   }
 }
+
    
 }//end of add product
 
 // this function use to get product liat to admin page
 
 public function waterList($id){
+
 
   $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND user_id ='$id' ORDER BY id ASC;";
    //lets check the errors 
@@ -295,6 +297,7 @@ public function waterList($id){
         $status = '<span class="badge bg-success">Completed</span>';
         $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
       
+
         echo('
         <tr>
           <th >'.$rec['id'].'</th>
@@ -338,6 +341,7 @@ $nor = $sqlResult->num_rows;
 if($nor > 0){
   while($rec = $sqlResult->fetch_assoc()){
     $status = "";
+
     $buttons = "";
     if($rec['admin'] == 0){ 
       $status = '<span class="badge bg-warning">Warning for approval</span>';
@@ -350,6 +354,7 @@ if($nor > 0){
       $status = '<span class="badge bg-success">Completed</span>';
       $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
     
+
       echo('
       <tr>
         <th >'.$rec['id'].'</th>

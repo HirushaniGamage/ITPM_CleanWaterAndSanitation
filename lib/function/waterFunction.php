@@ -42,7 +42,7 @@ public function makerequest($name, $phone, $user, $address, $date, $remark, $cap
 
 // this function use to get product liat to admin page
 
-public function gulleyList($id){
+public function waterList($id){
 
   $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND user_id ='$id' ORDER BY id ASC;";
    //lets check the errors 
@@ -131,7 +131,7 @@ else {echo('
 }
 
 
-public function delete_gulley($uid){
+public function delete_water($uid){
   $update1 = "UPDATE water_tbl SET d_status = 1 WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){

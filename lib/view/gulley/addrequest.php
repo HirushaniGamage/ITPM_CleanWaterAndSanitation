@@ -8,13 +8,13 @@
             <label for="">Name</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                 <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
+              
             </div>
             <div class="form-group col-6 mt-2">
             <label for="">Phone Number</label>
                 <input type="number" name="phone" id="phone" class="form-control">
             </div>
             <div class="form-group mt-2">
-            
                 <label for="">Location Address</label>
                 <input type="text" name="address" id="address" class="form-control" placeholder="Location Address">
             </div>
@@ -37,13 +37,12 @@
     </div>
 </div>
 <script>
+
     $uid="";
     $uid = $("#userid").val();
     $("#uid").val($uid);
 
      $(document).on('click','#btnAddreq',function(e){
-
-
         e.preventDefault();
         var form = $("#addreqtForm")[0];
 

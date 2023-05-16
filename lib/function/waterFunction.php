@@ -11,16 +11,237 @@ include_once('auto_id.php');
 
 class Water extends Main{
 
-      //lets create the Add Product Methord
+  public function addplant($name, $Capacity){
 
-public function makerequest($name, $phone, $user, $address, $date, $remark, $capacity){
+    //generate new id for a product
+    $autoNumber = new AutoNumber;
+    $Id = $autoNumber -> NumberGeneration("id","plant_tbl","PLN");
+ 
+    //insert product to databace
+  
+   $sqlInsert2 = "INSERT INTO plant_tbl VALUES('$Id','$name','$Capacity',0);";
+ 
+   //lets check the errors 
+   if($this->dbResult->error){
+       echo($this->dbResult->error);
+       exit;
+   }
+ 
+   //we need to execute our sql by query 
+   $sqlResult1 = $this->dbResult->query($sqlInsert2);
+   if($sqlResult1>0){
+     return("1");
+   }else{
+   return("Please Try again later!");
+   }
+    
+ }
+ 
 
-   //generate new id for a product
+ public function plantList(){
+
+  $sqlSelect = "SELECT * FROM plant_tbl WHERE d_status = 0 ORDER BY id DESC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    while($rec = $sqlResult->fetch_assoc()){
+
+        echo('
+        <tr>
+          <th >'.$rec['id'].'</th>
+          <td>'.$rec['name'].'</td>
+          <td>'.$rec['Capacity'].'</td>
+          <td>
+          <button type="button" class="btn btn-warning" onclick="editacc(\''.$rec['id'].'\')">Edit</button> OR 
+          <button type="button" class="btn btn-danger" onclick="deleteuser(\''.$rec['id'].'\')">Delete</button>
+          </td>
+       </tr>
+              ');
+    }
+  }
+  else {echo('
+    <div class="alert alert-danger" role="alert">
+    No Plants Are Found!
+  </div>');
+  }
+}
+
+
+ //lets create search product methord
+ public function plantSearch($searchData){
+
+  //sqlSearchData
+  $sqlSelect = "SELECT * FROM plant_tbl WHERE (id LIKE '$searchData%' OR name LIKE '$searchData%') AND d_status = 0";
+  
+    //lets check the errors 
+    if($this->dbResult->error){
+      echo($this->dbResult->error);
+      exit;
+     }
+   //sql execute 
+   $sqlResult = $this->dbResult->query($sqlSelect);
+
+    //check the number of rows
+    $nor = $sqlResult->num_rows;
+
+    if($nor > 0){
+      while($rec = $sqlResult->fetch_assoc()){
+          echo('
+          <tr>
+            <th >'.$rec['id'].'</th>
+            <td>'.$rec['name'].'</td>
+            <td>'.$rec['Capacity'].'</td>
+            <td>
+            <button type="button" class="btn btn-warning" onclick="editacc(\''.$rec['id'].'\')">Edit</button> OR 
+            <button type="button" class="btn btn-danger" onclick="deleteuser(\''.$rec['id'].'\')">Delete</button>
+            </td>
+         </tr>
+                ');
+      }
+    }
+    else {echo('
+      <div class="alert alert-danger" role="alert">
+      No Plants Are Found!
+    </div>');
+    }
+}
+
+
+
+public function delete_plant($uid){
+  $update1 = "UPDATE plant_tbl SET d_status = 1 WHERE  id = '$uid' AND d_status = 0;";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($update1);
+
+    return("ok"); 
+ 
+ }
+
+ function plantdata($uid){
+  $sqlSelect = "SELECT * FROM plant_tbl WHERE id = '$uid';";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($sqlSelect);
+
+ //check the number of rows
+ $nor = $sqlResult->num_rows;
+ if($nor > 0){
+ $rec = $sqlResult->fetch_assoc();
+
+ return json_encode($rec);
+ }
+}
+
+
+function editplantdata($id,$name,$capacity){
+
+  $update1 = "UPDATE plant_tbl SET name='$name', capacity='$capacity' WHERE  id='$id' AND d_status = 0;";
+     //lets check the errors 
+      if($this->dbResult->error){
+      echo($this->dbResult->error);
+      exit;
+     }
+   //sql execute 
+   $sqlResult = $this->dbResult->query($update1);
+       return("ok"); 
+}
+
+
+function getallplantdrop(){
+
+
+  $sqlSelect = "SELECT * FROM plant_tbl WHERE d_status =0 ORDER BY name DESC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    echo('<option value="0">Select Plant Location</option>');
+    while($rec = $sqlResult->fetch_assoc()){
+        echo('<option value="'.$rec['id'].'">'.$rec['name'].'</option>');
+    }
+  }
+  else {
+    echo('<option value="0"> No Plants</option>');
+  }
+}
+
+
+
+
+public function makerequest($name, $phone, $user, $address, $date, $remark, $capacity, $plantid){
+
+  $sqlSelect = "SELECT * FROM plant_tbl WHERE id = '$plantid';";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResult = $this->dbResult->query($sqlSelect);
+
+$rec = $sqlResult->fetch_assoc();
+
+$avalablevapacity = $rec['Capacity'];
+
+if ($avalablevapacity < $capacity){
+  return("02");
+}else{
+    
+$currentusage = 0.00;
+
+  $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND date ='$date' AND admin = 1 AND price != 0 ORDER BY id ASC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    while($rec = $sqlResult->fetch_assoc()){
+      $currentusage = $currentusage + $rec['capacity'];
+    }
+  }
+  $balance = $avalablevapacity - $currentusage;
+  if($balance < $capacity){
+    return("03");
+  }else{
+    //generate new id for a product
    $autoNumber = new AutoNumber;
-   $productId = $autoNumber -> NumberGeneration("id","water_tbl","GLY");
+   $productId = $autoNumber -> NumberGeneration("id","water_tbl","WTR");
 
    //insert product to databace
- 
+
   $sqlInsert2 = "INSERT INTO water_tbl VALUES('$productId','$name','$phone','$user','$address',
   '$date','$remark','$capacity',0,0,0,0,0,0);";
 
@@ -37,12 +258,17 @@ public function makerequest($name, $phone, $user, $address, $date, $remark, $cap
   }else{
   return("Please Try again later!");
   }
+
+  }
+}
+
    
 }//end of add product
 
 // this function use to get product liat to admin page
 
-public function gulleyList($id){
+public function waterList($id){
+
 
   $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND user_id ='$id' ORDER BY id ASC;";
    //lets check the errors 
@@ -59,10 +285,19 @@ public function gulleyList($id){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
-      else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
-      else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
-      else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
+      $buttons = "";
+      if($rec['admin'] == 0){ 
+        $status = '<span class="badge bg-warning">Warning for approval</span>';
+        $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
+      else if($rec['admin'] == 2){ 
+        $status = '<span class="badge bg-warning">Rejected</span>';}
+      else if($rec['done'] == 0){ 
+        $status = '<span class="badge bg-danger">Waiting for date</span>';}
+      else if($rec['done'] == 1){ 
+        $status = '<span class="badge bg-success">Completed</span>';
+        $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
+      
+
         echo('
         <tr>
           <th >'.$rec['id'].'</th>
@@ -71,7 +306,7 @@ public function gulleyList($id){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['price'].'</td>
           <td>'.$status.'</td>
-          <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td>
+          <td>'.$buttons.'</td>
        </tr>
               ');
     }
@@ -106,10 +341,20 @@ $nor = $sqlResult->num_rows;
 if($nor > 0){
   while($rec = $sqlResult->fetch_assoc()){
     $status = "";
-    if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
-    else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
-    else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
-    else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
+
+    $buttons = "";
+    if($rec['admin'] == 0){ 
+      $status = '<span class="badge bg-warning">Warning for approval</span>';
+      $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
+    else if($rec['admin'] == 2){ 
+      $status = '<span class="badge bg-warning">Rejected</span>';}
+    else if($rec['done'] == 0){ 
+      $status = '<span class="badge bg-danger">Waiting for date</span>';}
+    else if($rec['done'] == 1){ 
+      $status = '<span class="badge bg-success">Completed</span>';
+      $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
+    
+
       echo('
       <tr>
         <th >'.$rec['id'].'</th>
@@ -118,7 +363,7 @@ if($nor > 0){
         <td>'.$rec['capacity'].'</td>
         <td>'.$rec['price'].'</td>
         <td>'.$status.'</td>
-        <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td>
+        <td>'.$buttons.'</td>
      </tr>
             ');
   }

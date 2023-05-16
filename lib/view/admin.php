@@ -45,17 +45,21 @@ include_once('../layout/app.php');
                         <li>
                             <a href="#" id="allwaterrewuest">
                             <i class="fas fa-retweet"></i>
+
                                 <span>All Water Request</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+
                             <i class="fas fa-hand-holding-water"></i>
+
                                 <span>All Water Jobs</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
+
                             <i class="fas fa-comment"></i>
                                 <span>All Water Feedbacks</span>
                             </a>
@@ -63,21 +67,43 @@ include_once('../layout/app.php');
                         <li>
                             <a href="#" id="allgulleyrewuest">
                             <i class="fas fa-retweet"></i>
+
                                 <span>All Gulley Request</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="todojobcards">
+
                             <i class="fas fa-recycle"></i>
+
                                 <span>All Gulley Jobs</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="allrequestrate">
-                            <i class="fas fa-comment"></i>
+
+                                <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
                             </a>
                         </li>
+                        <hr style="color:white;">
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Plant</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a id="add_Plant">Add Plant</a>
+                                    </li>
+                                    <li>
+                                        <a id="edit_Plant">Edit Plants</a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
+                        
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->
@@ -107,27 +133,42 @@ include_once('../layout/app.php');
                                                         //chek the user session
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
-           <div class="container" id="adminloadContent">
-            <img src="../upload/ui/Admin-bro.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
-           </div>
+
+            <div class="container" id="adminloadContent">
+                <img src="../upload/ui/Admin-bro.png"
+                    style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;"
+                    alt="">
+            </div>
+
+        
         </main>
     </div>
 </body>
 <script>
-      $('#allgulleyrewuest').click(function(){
+    $('#allgulleyrewuest').click(function () {
         $('#adminloadContent').load('gulley/allrequest.php');
     });
 
-    $('#allwaterrewuest').click(function(){
+    $('#allwaterrewuest').click(function () {
         $('#adminloadContent').load('water/allrequest.php');
     });
 
-    $('#todojobcards').click(function(){
+    $('#todojobcards').click(function () {
         $('#adminloadContent').load('gulley/allrequesttodo.php');
     });
 
-    $('#allrequestrate').click(function(){
+    $('#allrequestrate').click(function () {
         $('#adminloadContent').load('gulley/allrequestrate.php');
     });
+
+    $('#add_Plant').click(function(){
+        $('#adminloadContent').load('plant/addplant.php');
+    });
+
+    $('#edit_Plant').click(function(){
+      $('#adminloadContent').load('plant/edit_plant.php');
+    });
 </script>
+
+
 </html>

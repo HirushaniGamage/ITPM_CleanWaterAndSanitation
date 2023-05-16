@@ -210,5 +210,7 @@ else{
 }//end of userRegistration
 
 
-  }
+
+  }
 ?>
+

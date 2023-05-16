@@ -6,7 +6,7 @@ if(empty($_SESSION['login_email'])){
 header('location:../../index.php');
 
 }
-if(($_SESSION['type'])!= "Admin"){
+if(($_SESSION['type'])!= "User"){
     //redirect user backto login
     header('location:../../index.php');
     
@@ -20,7 +20,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-    Aqua Guard-Admin
+    Aqua Guard-Water Service
     </title>
 </head>
 
@@ -43,41 +43,24 @@ include_once('../layout/app.php');
                             <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
                         </li>
                         <li>
-                            <a href="#" id="allwaterrewuest">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Water Request</span>
+                            <a href="User.php">
+                            <i class="fas fa-ellipsis-h"></i>
+                                <span>Main Menu</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                            <i class="fas fa-hand-holding-water"></i>
-                                <span>All Water Jobs</span>
+                            <a href="#" id="makereq">
+                            <i class="fas fa-handshake"></i>
+                                <span>Make Request</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                            <i class="fas fa-comment"></i>
-                                <span>All Water Feedbacks</span>
+                            <a href="#" id="reqlist">
+                            <i class="fas fa-stream"></i>
+                                <span>All Request</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" id="allgulleyrewuest">
-                            <i class="fas fa-retweet"></i>
-                                <span>All Gulley Request</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" id="todojobcards">
-                            <i class="fas fa-recycle"></i>
-                                <span>All Gulley Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" id="allrequestrate">
-                            <i class="fas fa-comment"></i>
-                                <span>All Gulley Feedbacks</span>
-                            </a>
-                        </li>
+                        <hr>
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->
@@ -108,26 +91,18 @@ include_once('../layout/app.php');
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
            <div class="container" id="adminloadContent">
-            <img src="../upload/ui/Admin-bro.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
+            <img src="../upload/ui/Hydratation-amico.png"  style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;" alt="">
            </div>
         </main>
     </div>
 </body>
 <script>
-      $('#allgulleyrewuest').click(function(){
-        $('#adminloadContent').load('gulley/allrequest.php');
+     $('#makereq').click(function(){
+        $('#adminloadContent').load('water/addrequest.php');
     });
 
-    $('#allwaterrewuest').click(function(){
-        $('#adminloadContent').load('water/allrequest.php');
-    });
-
-    $('#todojobcards').click(function(){
-        $('#adminloadContent').load('gulley/allrequesttodo.php');
-    });
-
-    $('#allrequestrate').click(function(){
-        $('#adminloadContent').load('gulley/allrequestrate.php');
+    $('#reqlist').click(function(){
+        $('#adminloadContent').load('water/requestlist.php');
     });
 </script>
 </html>

@@ -1,4 +1,4 @@
-<div class="">
+<div class="card border-success py-2 px-2">
     <h3>Make Request for Gulley Service</h3>
     <hr>
     <div class="row">

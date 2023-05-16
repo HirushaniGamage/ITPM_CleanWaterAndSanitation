@@ -1,81 +1,16 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Aqua Guard</title>
-
-    <!--Link Bootstrap css file-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!--Link Font awesome css file-->
-    <link rel="stylesheet" href="css/all.min.css">
-    <!--Link Style sheet css file-->
-    <link rel="stylesheet" href="css/style.css">
-
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-
-    <!--Link Font awesome bootstrap and Jquery scrip files-->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/all.min.js"></script>
-    <style>
-        #body {
-            background: url("lib/upload/ui/Background.jpg")no-repeat center fixed;
-            background-size: cover;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        #loginback {
-            background-color: aqua;
-            background-color: rgba(0, 0, 0, .35);
-            color: black;
-        }
-    </style>
-
-</head>
-
-<body id="body">
-
-<idv class="py-0">
-    <div class="row py-0">
-        <div class="col-7">
-        <div class="center" style="margin-top: 5%; text-align: center;">
-            <img style="height: auto;  width: 25%; align: center;" src="" alt="">
-            </div>
-            <div class="center" style="margin-top: 6%;">
-            <h1 style="text-align: center; font-weight: 900; color:black;" >Aqua Gaurd</h1>
-            <h1 style="text-align: center; font-weight: 900; color:black"></h1>
-            </div>
-        </div>
-        <div class="col-5 px-5" id="loginback" style="height:100vh; margin: auto;">
-            <div style="margin-top: 20%;">
-
-                <h1 class="font-weught-bold py-3">Sign in</h1>
-                <form action="" method="post">
-                    <div class="form-row">
-                        <label style="border-radius: 25px;" for="">User Name</label>
-                        <input style="border-radius: 25px;" type="email" name="userName" id="userName"
-                            class="form-control my-3" placeholder="Email-Address">
-                    </div>
-                    <div class="form-row">
-                        <label for="">password</label>
-                        <input style="border-radius: 25px;" type="password" name="userPwd" id="userPwd"
-                            class="form-control my-3" placeholder="******">
-                    </div>
-                    <div class="form-row py-3">
-                        <input type="submit" value="Login" style="border-radius: 25px;" class="btn btn-success"
-                            name="btnLogin">
-                        <input type="reset" value="Clear" style="border-radius: 25px;" class="btn btn-outline-danger">
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</idv>
-</body>
+	<title>Aqua Guard-Sign In & Sign Up</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/style1.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/registerPage.js"></script>
+ </head>
+<body>
 <?php
 
 include_once('lib/function/userFunction.php');
@@ -83,6 +18,7 @@ include_once('lib/function/userFunction.php');
 // session_start();
 
 if(isset($_POST['btnLogin'])){
+
 $userObj = new User();
 
 $result = $userObj -> Authentication($_POST['userName'],$_POST['userPwd']);
@@ -92,4 +28,87 @@ echo($result);
 }
 
 ?>
-</html>
+  <div class="cont">
+    <div class="form sign-in">
+      <h2>Sign In</h2>
+      <form action="" method ="POST">
+      <label>
+        <span>Email</span>
+        <input type="text" name="userName" id="userName">
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="userPwd" id="userPwd">
+      </label>
+      <button class="submit" type="submit" value="login" name="btnLogin">Sign In</button>
+    </form>
+
+  
+    <div class="social-media">
+        <ul>
+          <li><img src="lib/upload/ui/facebook.png"></li>
+          <li><img src="lib/upload/ui/instagram.png"></li>
+          <li><img src="lib/upload/ui/whatsapp.png"></li>
+          <li><img src="lib/upload/ui/twitter.png"></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-cont">
+      <div class="img">
+        <div class="img-text m-up">
+          <img src="lib/upload/ui/pngwing.com (1).png" style="width:80%;" alt="">
+          <h2 class="my-5">New here?</h2>
+          <p>Defend your water, defend your health.</p>
+        </div>
+        <div class="img-text m-in">
+        <img src="lib/upload/ui/Screenshot 2023-02-23 at 10.05.09 PM.png" style="width:80%;" alt="">
+          <h2>One of us?</h2>
+          <p>Are you one of us? Sign in and
+join the community. We've missed you!</p>
+        </div>
+        <div class="img-btn">
+          <span class="m-up">Sign Up</span>
+          <span class="m-in">Sign In</span>
+        </div>
+      </div>
+      <div class="form sign-up">
+        <h2>Sign Up</h2>
+        <form id="registrationForm">
+        <label>
+          <span>Name</span>
+          <input type="text" name="userName" id="userName1">
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="userEmail" id="userEmail">
+        </label>
+        <label>
+          <span>Password</span>
+          <input type="password" name="userPwd" id="userPwd1">
+        </label>
+        <label>
+          <span>Re-Type Password</span>
+          <input type="password" name="reuserPwd" id="reuserPwd">
+        </label>
+        <label>
+          <span>Contact Number</span>
+          <input type="number" name="userPhone" id="userPhone">
+        </label>
+        <button class="submit" name="btn_save" id="btnSave" onclick="return false" >Sign Up Now</button>
+      </form>
+      </div>
+    </div>
+  </div>
+  </body>
+
+  <script>
+     document.querySelector('.img-btn').addEventListener('click', function()
+	{
+		document.querySelector('.cont').classList.toggle('s-signup')
+	}
+);
+
+
+  </script>
+  </html>

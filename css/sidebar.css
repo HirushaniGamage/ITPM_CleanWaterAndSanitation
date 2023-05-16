@@ -366,7 +366,7 @@
   /*-----------------------------chiller-theme-------------------------------------------------*/
   
   .chiller-theme .sidebar-wrapper {
-      background: #3E3F3A;
+      background: #31353D;
   }
   
   .chiller-theme .sidebar-wrapper .sidebar-header,
@@ -396,7 +396,7 @@
   .chiller-theme .sidebar-wrapper .sidebar-header .user-info,
   .chiller-theme .sidebar-wrapper .sidebar-brand>a:hover,
   .chiller-theme .sidebar-footer>a:hover i {
-      color: #31d1e6;
+      color: #e63131;
   }
   
   .page-wrapper.chiller-theme.toggled #close-sidebar {

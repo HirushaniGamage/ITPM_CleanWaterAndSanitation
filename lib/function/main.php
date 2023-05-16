@@ -8,12 +8,12 @@ class Main{
 
     public function __construct()
     {
-        $this->connObj = new Connection("localhost","root","","db_nwsdb");
+        $this->connObj = new Connection("localhost","root","","db_aquaguard");
 
         $this->dbResult = $this->connObj->Conn();
 
         return($this->dbResult);
-    }
+    }
 }
 
 

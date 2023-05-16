@@ -5,7 +5,7 @@ include_once('../../function/userFunction.php');
 
 $userObj = new User();
 
-$result = $userObj->userRegistration($_POST['userName'],$_POST['userEmail'],$_POST['userPwd'],$_POST['userPhone'],$_POST['userNIC'],$_POST['electracityCat'],$_POST['region']);
+$result = $userObj->userRegistration($_POST['userName'],$_POST['userEmail'],$_POST['userPwd'],$_POST['userPhone']);
 
 echo($result);
 

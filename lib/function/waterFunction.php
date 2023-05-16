@@ -284,7 +284,7 @@ else {echo('
 }
 
 
-public function delete_gulley($uid){
+public function delete_water($uid){
   $update1 = "UPDATE water_tbl SET d_status = 1 WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){

@@ -6,7 +6,7 @@ include_once('../../function/waterFunction.php');
 //call the class and create an object 
 $userObj = new Water();
 
-$result = $userObj -> gulleyList($_GET['id']);
+$result = $userObj -> waterList($_GET['id']);
 
 echo($result);
 

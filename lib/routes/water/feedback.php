@@ -1,14 +1,12 @@
 <?php
+// include function page(userFunction.php)
 
-//include function page 
 include_once('../../function/waterFunction.php');
 
-//call the class and create an object 
 $userObj = new Water();
 
-$result = $userObj -> waterListA();
+$result = $userObj->feedback($_GET['id'], $_GET['rate']);
 
 echo($result);
-
 
 ?>

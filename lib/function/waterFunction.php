@@ -293,7 +293,7 @@ public function waterList($id){
         $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ 
         $status = '<span class="badge bg-success">Completed</span>';
-        $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>';}
+        $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
       
         echo('
         <tr>
@@ -348,7 +348,7 @@ if($nor > 0){
       $status = '<span class="badge bg-danger">Waiting for date</span>';}
     else if($rec['done'] == 1){ 
       $status = '<span class="badge bg-success">Completed</span>';
-      $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info">Print bill</button></td>';}
+      $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
     
       echo('
       <tr>

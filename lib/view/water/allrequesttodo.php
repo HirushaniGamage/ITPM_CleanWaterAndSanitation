@@ -81,7 +81,7 @@
             confirmButtonText: 'start Job',
             showLoaderOnConfirm: true,
             preConfirm: function() {
-                $.get("../routes/gulley/adminstart.php",{
+                $.get("../routes/water/adminstart.php",{
                 uid:oid
             },function (res) {
                 if(res="ok"){
@@ -90,11 +90,11 @@
                     'Your Job start Successfully.',
                     'success'
                     )
-
-                    $.get("../routes/gulley/todo_listadmin.php",{}, function (res) {
-                        //display data 
-                        $("#emp_list").html(res);
-                        })
+                    $inputData = $("#plants").val();
+                    $.get("../routes/water/todo_listadmin.php",{
+                    plant:$inputData},function(res){
+                    $("#emp_list").html(res);
+                })
 
                 }
                 else if (res="no"){
@@ -121,7 +121,7 @@
             confirmButtonText: 'end Job',
             showLoaderOnConfirm: true,
             preConfirm: function() {
-                $.get("../routes/gulley/adminend.php",{
+                $.get("../routes/water/adminend.php",{
                 uid:oid
             },function (res) {
                 if(res="ok"){
@@ -131,10 +131,12 @@
                     'success'
                     )
 
-                    $.get("../routes/gulley/todo_listadmin.php",{}, function (res) {
-                        //display data 
-                        $("#emp_list").html(res);
-                        })
+                    $inputData = $("#plants").val();
+                    $.get("../routes/water/todo_listadmin.php",{
+                    plant:$inputData},function(res){
+                    $("#emp_list").html(res);
+                })
+
 
                 }
                 else if (res="no"){

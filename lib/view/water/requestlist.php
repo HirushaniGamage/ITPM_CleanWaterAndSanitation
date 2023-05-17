@@ -232,4 +232,42 @@
         }
         });
     }
+
+    function feedback(id) {
+            Swal.fire({
+                icon:'question',
+                title: 'feedback for This Job',
+                input: 'text',utValue: 2,
+                showCancelButton: true,
+                confirmButtonText: 'Rate Now',
+                showLoaderOnConfirm: true,
+                preConfirm: function (value) {
+                    $.get("../routes/water/feedback.php", {
+                            id: id,
+                            rate: value
+                        }, function (res) {
+                            if (res = "ok") {
+
+                                Swal.fire(
+                                    'Rated!',
+                                    'You feedback Sucessfully.',
+                                    'success'
+                                )
+
+                            } else {
+                                Swal.fire(
+                                    'Somethin Wrong',
+                                    'You cant feedback now.',
+                                    'error')
+                            }
+
+                        }
+
+                    )
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {}
+            })
+        }
+
     </script>

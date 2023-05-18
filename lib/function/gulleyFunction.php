@@ -58,7 +58,6 @@ public function gulleyList($id){
 
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
-
       if($rec['admin'] == 0){
         echo('
         <tr>
@@ -66,8 +65,7 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-
-          <td><span class="badge bg-warning">Warning for approval</span></td>
+          <td><span class="badge bg-warning">waiting for approval</span></td>
           <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td>
        </tr>
               ');}
@@ -78,7 +76,7 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-warning">Warning for New Date</span></td>
+          <td><span class="badge bg-warning">waiting for New Date</span></td>
           <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-info">New Date</button></td>
        </tr>
               ');
@@ -90,7 +88,7 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-danger">Declared</span></td>
+          <td><span class="badge bg-danger">Decline</span></td>
           <td> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td></td>
        </tr>
               ');
@@ -152,7 +150,6 @@ $nor = $sqlResult->num_rows;
 
 if($nor > 0){
   while($rec = $sqlResult->fetch_assoc()){
-
     if($rec['admin'] == 0){
       echo('
       <tr>
@@ -160,7 +157,7 @@ if($nor > 0){
         <td>'.$rec['name'].'</td>
         <td>'.$rec['date'].'</td>
         <td>'.$rec['price'].'</td>
-        <td><span class="badge bg-warning">Warning for approval</span></td>
+        <td><span class="badge bg-warning">waiting for approval</span></td>
         <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td>
      </tr>
             ');}
@@ -171,7 +168,7 @@ if($nor > 0){
         <td>'.$rec['name'].'</td>
         <td>'.$rec['date'].'</td>
         <td>'.$rec['price'].'</td>
-        <td><span class="badge bg-warning">Warning for New Date</span></td>
+        <td><span class="badge bg-warning">waiting for New Date</span></td>
         <td><button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-info">New Date</button></td>
      </tr>
             ');
@@ -183,7 +180,7 @@ if($nor > 0){
         <td>'.$rec['name'].'</td>
         <td>'.$rec['date'].'</td>
         <td>'.$rec['price'].'</td>
-        <td><span class="badge bg-danger">Declared</span></td>
+        <td><span class="badge bg-danger">Decline</span></td>
         <td> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button></td></td>
      </tr>
             ');
@@ -254,7 +251,7 @@ public function gulleyListA(){
           <td>'.$rec['phone'].'</td>
           <td>'.$rec['address'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
            <button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-warning">Re-date</button></td>
        </tr>
               ');
@@ -300,9 +297,8 @@ if($nor > 0){
         <td>'.$rec['phone'].'</td>
         <td>'.$rec['address'].'</td>
         <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-         <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+         <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
          <button type="button" onclick="date(\''.$rec['id'].'\');" class="btn btn-warning">Re-date</button></td>
-         
      </tr>
             ');
   }
@@ -313,7 +309,6 @@ else {echo('
 </div>');
 }
 }
-
 
 
 public function todogulleyListA(){

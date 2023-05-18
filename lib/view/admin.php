@@ -20,7 +20,7 @@ include_once('../layout/app.php');
 
 <head>
     <title>
-    Aqua Guard-Admin
+        Aqua Guard-Admin
     </title>
 </head>
 
@@ -44,44 +44,43 @@ include_once('../layout/app.php');
                         </li>
                         <li>
                             <a href="#" id="allwaterrewuest">
-                            <i class="fas fa-retweet"></i>
-
+                                <i class="fas fa-retweet"></i>
                                 <span>All Water Request</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-
-                            <i class="fas fa-hand-holding-water"></i>
-
+                            <a href="#" id="allwaterrequesttodo">
+                                <i class="fas fa-hand-holding-water"></i>
                                 <span>All Water Jobs</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-
-                            <i class="fas fa-comment"></i>
+                            <a href="#" id="waterfeedbacks">
+                                <i class="fas fa-comment"></i>
                                 <span>All Water Feedbacks</span>
                             </a>
                         </li>
                         <li>
+                            <a href="#" id="waterreport">
+                            <i class="fas fa-chart-line"></i>
+                                <span>Report</span>
+                            </a>
+                        </li>
+                        <hr style="color:white;">
+                        <li>
                             <a href="#" id="allgulleyrewuest">
-                            <i class="fas fa-retweet"></i>
-
+                                <i class="fas fa-retweet"></i>
                                 <span>All Gulley Request</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="todojobcards">
-
-                            <i class="fas fa-recycle"></i>
-
+                                <i class="fas fa-recycle"></i>
                                 <span>All Gulley Jobs</span>
                             </a>
                         </li>
                         <li>
                             <a href="#" id="allrequestrate">
-
                                 <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
                             </a>
@@ -103,7 +102,7 @@ include_once('../layout/app.php');
                                    
                                 </ul>
                             </div>
-                        
+                        </li>
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->
@@ -133,24 +132,33 @@ include_once('../layout/app.php');
                                                         //chek the user session
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
-
             <div class="container" id="adminloadContent">
                 <img src="../upload/ui/Admin-bro.png"
                     style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;"
                     alt="">
             </div>
-
-        
         </main>
     </div>
 </body>
 <script>
+    $('#waterreport').click(function () {
+        window.open("invoice/waterprint2.php"," Aqua Guard", "width=600, height=600");
+    });
+
     $('#allgulleyrewuest').click(function () {
         $('#adminloadContent').load('gulley/allrequest.php');
     });
 
     $('#allwaterrewuest').click(function () {
         $('#adminloadContent').load('water/allrequest.php');
+    });
+
+    $('#allwaterrequesttodo').click(function () {
+        $('#adminloadContent').load('water/allrequesttodo.php');
+    });
+
+    $('#waterfeedbacks').click(function () {
+        $('#adminloadContent').load('water/allrequestrate.php');
     });
 
     $('#todojobcards').click(function () {
@@ -169,6 +177,5 @@ include_once('../layout/app.php');
       $('#adminloadContent').load('plant/edit_plant.php');
     });
 </script>
-
 
 </html>

@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card border-info py-2 px-2">
         <div class="row">
             <div class="col-6">
                 <h5>All Request List</h5>
@@ -157,7 +157,7 @@
                 if(res="ok"){
                     Swal.fire(
                     'Successful!',
-                    'Your Request Declare Successfully.',
+                    'Request Accept Successfully.',
                     'success'
                     )
 
@@ -171,12 +171,12 @@
                 else if (res="no"){
                     Swal.fire(
                     'Somethin Wrong',
-                    'You can not declare this request.',
+                    'You can not Accept this request.',
                     'error')
                 }else{
                     Swal.fire(
                     'Somethin Wrong',
-                    'Can not declare request.',
+                    'Can not Accept request.',
                     'error')
                 }
             })

@@ -4,9 +4,7 @@
                 <h5>All Feedbacks</h5>
                 <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
             </div>
-            <div class="col-6">
-                <input class="form-control mx-1 my-1" type="search" name="searchData" id="search_emp" placeholder="Search Request">
-            </div>
+           
         </div>
         <hr>
         <div id="list">

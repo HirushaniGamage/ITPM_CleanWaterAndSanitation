@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card border-warning py-2 px-2">
         <div class="row">
             <div class="col-6">
                 <h5>All Jobs to do</h5>

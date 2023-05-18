@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card border-success py-2 px-2">
     <div class="row">
         <div class="col-6">
             <h5>All Request List</h5>
@@ -89,7 +89,7 @@
                     $("#emp_list").html(res);
                 })
             })
-         })
+        })
 
         function feedback(id) {
             Swal.fire({
@@ -238,7 +238,9 @@
                             )
 
                             $id = $("#userid").val();
-                            $.get("../routes/gulley/req_listadmin.php", function (res) {
+                            $.get("../routes/gulley/req_list.php", {
+                                id: $id
+                            }, function (res) {
                                 //display data 
                                 $("#emp_list").html(res);
                             })

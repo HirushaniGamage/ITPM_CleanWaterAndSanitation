@@ -270,4 +270,10 @@
             })
         }
 
+        function bill($oid){
+  window.open("invoice/waterprint.php?id="+$oid+"",
+                    " Aqua Guard", "width=600, height=600");
+}
+
+
     </script>

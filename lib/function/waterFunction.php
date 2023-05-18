@@ -293,7 +293,7 @@ public function waterList($id){
         $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ 
         $status = '<span class="badge bg-success">Completed</span>';
-        $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>';}
+        $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
       
         echo('
         <tr>
@@ -348,7 +348,7 @@ if($nor > 0){
       $status = '<span class="badge bg-danger">Waiting for date</span>';}
     else if($rec['done'] == 1){ 
       $status = '<span class="badge bg-success">Completed</span>';
-      $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info">Print bill</button></td>';}
+      $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
     
       echo('
       <tr>
@@ -718,6 +718,52 @@ $sqlResult = $this->dbResult->query($update1);
     }
   }
   
+//lets create search employer methord
+public function val06($start, $end){
+
+  //sqlSearchData
+  $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND done = 1 AND (date BETWEEN '$start' AND '$end') ORDER BY id ASC;";
+  
+  //lets check the errors 
+  if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+  //sql execute 
+  $sqlResult = $this->dbResult->query($sqlSelect);
+  
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+  
+  if($nor > 0){
+    $total = 0.00;
+    while($rec = $sqlResult->fetch_assoc()){
+      echo('
+      <tr>
+        <th >'.$rec['id'].'</th>
+        <td>'.$rec['date'].'</td>
+        <td>'.$rec['name'].'</td>
+        <td>'.$rec['phone'].'</td>
+        <td>'.$rec['capacity'].'</td>
+        <td>'.$rec['price'].'</td>
+     </tr>
+            ');
+            $total = $total + $rec['price'];
+    }
+    echo('
+    <tr>
+      <th colspan="5"></td>
+      <td>'.$total.'</td>
+   </tr>
+          ');
+  }
+  else {
+    echo('
+    <div class="alert alert-warning" role="alert">
+    No Orders Are Found!
+  </div>');
+  }
+  }
 
 }
 

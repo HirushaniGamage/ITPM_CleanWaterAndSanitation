@@ -63,7 +63,7 @@ include_once('../layout/app.php');
                         <li>
                             <a href="#" id="waterreport">
                             <i class="fas fa-chart-line"></i>
-                                <span>Report</span>
+                                <span>Water supplying Report</span>
                             </a>
                         </li>
                         <hr style="color:white;">
@@ -83,6 +83,12 @@ include_once('../layout/app.php');
                             <a href="#" id="allrequestrate">
                                 <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="gulleyreporrt2">
+                            <i class="fas fa-chart-line"></i>
+                                <span>Gulley supplying Report</span>
                             </a>
                         </li>
                         <hr style="color:white;">
@@ -143,6 +149,10 @@ include_once('../layout/app.php');
 <script>
     $('#waterreport').click(function () {
         window.open("invoice/waterprint2.php"," Aqua Guard", "width=600, height=600");
+    });
+
+    $('#gulleyreporrt2').click(function () {
+        window.open("invoice/gulleyprint2.php"," Aqua Guard", "width=600, height=600");
     });
 
     $('#allgulleyrewuest').click(function () {

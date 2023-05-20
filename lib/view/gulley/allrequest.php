@@ -142,7 +142,7 @@
      function Accept(oid){
         Swal.fire({
             icon: 'warning',
-            title: 'Submit Job Price and Conform',
+            title: 'Submit Job Price(Rs) and Confirm',
             input: 'number',
             id:"rangec",
             inputValue: 0.00,

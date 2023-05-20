@@ -60,7 +60,6 @@ include_once('../layout/app.php');
                                 <span>All Water Feedbacks</span>
                             </a>
                         </li>
-                        <hr style="color:white;">
                         <li>
                             <a href="#" id="waterreport">
                             <i class="fas fa-chart-line"></i>
@@ -183,10 +182,14 @@ include_once('../layout/app.php');
                                                         //chek the user session
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
-            <div class="container" id="adminloadContent">
-                <img src="../upload/ui/Admin-bro.png"
-                    style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;"
+            <div class="container" id="adminloadContent" style="background-color:#C1D7E8;">
+                <img src="../upload/ui/AQUA GUARD.png"
+                    style="width:50%; display: block; margin-left: auto; margin-right: auto; margin-top:10px; margin-bottom:20px;"
                     alt="">
+               
+
+    
+                   
             </div>
         </main>
     </div>

@@ -298,7 +298,7 @@ public function waterList($id){
       $status = "";
       $buttons = "";
       if($rec['admin'] == 0){ 
-        $status = '<span class="badge bg-warning">Warning for approval</span>';
+        $status = '<span class="badge bg-warning">Waiting for approval</span>';
         $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
       else if($rec['admin'] == 2){ 
         $status = '<span class="badge bg-warning">Rejected</span>';}
@@ -451,7 +451,7 @@ public function waterListA(){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
       else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
       else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
@@ -465,7 +465,7 @@ public function waterListA(){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
            
        </tr>
               ');
@@ -498,7 +498,7 @@ public function reqSearchA($searchData){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
       else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
       else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
@@ -512,7 +512,7 @@ public function reqSearchA($searchData){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
            
        </tr>
               ');

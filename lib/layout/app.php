@@ -17,13 +17,9 @@
     
     <!--Link Font awesome bootstrap and Jquery scrip files-->
     <script src="../../js/jquery.js"></script>
-    <script src="../../js/registerPage.js"></script>
-    <script src="../../js/storekeeper.js"></script>
-    <script src="../../js/adminpage.js"></script>
+    <script src="../../js/sidebar.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/all.min.js"></script>
-    <script src="../../js/sidebar.js"></script>
-    <script src="../../js/service.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>

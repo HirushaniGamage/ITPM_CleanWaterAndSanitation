@@ -107,21 +107,15 @@ include_once('../layout/app.php');
                     <a id="add_Customer">Add Plant</a>
                   </li>
                   <li>
-                    <a id="edit_Customer">Edit Plants</a>
+                <!--<a id="edit_Customer">Edit Plants</a>
                   </li>
                   <li>
                     <a id="activate_Customer">Activate Plant Account</a>
                   </li>
-                </ul>
+                </ul>-->
               </div>
             </li>
-            <li>
-              <a id="edit_plantdata">
-              <i class="fas fa-wrench"></i>
-                <span>Plant Data</span>
-              </a>
-            </li>
-            <li>
+            
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->

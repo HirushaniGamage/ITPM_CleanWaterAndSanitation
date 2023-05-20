@@ -60,6 +60,7 @@ include_once('../layout/app.php');
                                 <span>All Water Feedbacks</span>
                             </a>
                         </li>
+                        <hr style="color:white;">
                         <li>
                             <a href="#" id="waterreport">
                             <i class="fas fa-chart-line"></i>
@@ -95,20 +96,64 @@ include_once('../layout/app.php');
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fas fa-layer-group"></i>
-                                <span>Plant</span>
+                                <span>Plant Location</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a id="add_Plant">Add Plant</a>
+                                        <a id="add_Plant">Add Plant Location</a>
                                     </li>
                                     <li>
-                                        <a id="edit_Plant">Edit Plants</a>
+                                        <a id="edit_Plant">Edit Plant Location</a>
                                     </li>
                                    
                                 </ul>
                             </div>
                         </li>
+                        <hr style="color:white;">
+                        <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fas fa-user-md"></i>
+                <span>Employer</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a id="add_employer">Add Employer</a>
+                  </li>
+                  <li>
+                    <a id="edit_employer">Edit Employer</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="sidebar-dropdown">
+              <a href="#">
+                <i class="fas fa-layer-group"></i>
+                <span>Plant</span>
+              </a>
+              <div class="sidebar-submenu">
+                <ul>
+                  <li>
+                    <a id="add_Customer">Add Plant</a>
+                  </li>
+                  <li>
+                    <a id="edit_Customer">Edit Plants</a>
+                  </li>
+                  <li>
+                    <a id="activate_Customer">Activate Plant Account</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a id="edit_plantdata">
+              <i class="fas fa-wrench"></i>
+                <span>Plant Data</span>
+              </a>
+            </li>
+            <li>
+                    </ul>
                     </ul>
                 </div>
                 <!-- End sidebar-menu  -->

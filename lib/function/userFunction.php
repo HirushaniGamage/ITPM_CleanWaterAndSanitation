@@ -210,5 +210,5 @@ else{
 }//end of userRegistration
 
 
-}
+  }
 ?>

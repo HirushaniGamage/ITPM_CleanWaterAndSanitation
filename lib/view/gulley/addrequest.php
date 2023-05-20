@@ -27,7 +27,7 @@
                 <input type="text" name="remark" id="remark" class="form-control" placeholder="Remark">
             </div>
             <div class="form-group my-3 mt-2">
-                <button id="btnAddreq" class="btn btn-success">Add Request</button>
+                <button id="btnAddreq" Onclick="return false" class="btn btn-success">Add Request</button>
             </div>
         </form>
         </div>
@@ -42,7 +42,22 @@
     $("#uid").val($uid);
 
      $(document).on('click','#btnAddreq',function(e){
+        // validation function
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var address = $("address").val();
+        var date = $("date").val();
+        var remark = $("remark").val();
 
+        if(name =="" || phone =="" || address =="" || date =="" || remark ==""){
+            Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'please fill all required fields',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+        } else{
 
         e.preventDefault();
         var form = $("#addreqtForm")[0];
@@ -71,7 +86,7 @@
                     $("#address").val("");
                     $("#remark").val("");
 
-                }else{
+                }else if(data == "02"){
                    Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -86,5 +101,6 @@
             }
             
         });
+    }
     });
 </script>

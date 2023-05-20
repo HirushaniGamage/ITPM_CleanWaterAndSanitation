@@ -15,6 +15,19 @@ class Gulley extends Main{
 
 public function makerequest($name, $phone, $user, $address, $date, $remark){
 
+  $sqlSelectch = "SELECT * FROM gulley_tbl WHERE phone = '$phone' AND user_id = '$user' AND 
+  address = '$address' AND date = '$date' AND remark = '$remark';";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResultch = $this->dbResult->query($sqlSelectch);
+
+$norch = $sqlResultch->num_rows;
+
+if($norch == 0){
    //generate new id for a product
    $autoNumber = new AutoNumber;
    $productId = $autoNumber -> NumberGeneration("id","gulley_tbl","GLY");
@@ -35,9 +48,9 @@ public function makerequest($name, $phone, $user, $address, $date, $remark){
   if($sqlResult1>0){
     return("01");
   }else{
-  return("Please Try again later!");
+  return("02");
   }
-   
+}
 }//end of add product
 
 // this function use to get product liat to admin page
@@ -100,7 +113,7 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-info">waiting for Completion</span></td>
+          <td><span class="badge bg-info">Waiting for Completion</span></td>
           <td></td>
        </tr>
               ');
@@ -112,7 +125,7 @@ public function gulleyList($id){
           <td>'.$rec['name'].'</td>
           <td>'.$rec['date'].'</td>
           <td>'.$rec['price'].'</td>
-          <td><span class="badge bg-success">Compleated</span></td>
+          <td><span class="badge bg-success">Completed</span></td>
           <td><button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button>
           <button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-success">Print bill</button></td>
           </td>
@@ -238,7 +251,7 @@ public function gulleyListA(){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
       else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
       else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
@@ -284,7 +297,7 @@ $nor = $sqlResult->num_rows;
 if($nor > 0){
   while($rec = $sqlResult->fetch_assoc()){
     $status = "";
-    if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+    if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
     else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
     else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
     else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}

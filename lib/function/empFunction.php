@@ -53,10 +53,7 @@ public function addEmployer($empFName,$empSName,$empBirthday,$empGender,$empNic,
         //lets create a hash by using MD5
         $newPwd = md5($pwd);
 
-          //send password to Employer
-          $email_send = new Mail();
-          $email_send->Send_mail($empEmail,"Welcome to National Water Supply and Drainage Board","<h3>Hellow $empFName,</h3><br> <h4>This is your account credentials, <br> please visit your account and chenge your Password<h4> <br> Username: $empEmail <br> Password: $pwd ");
-
+         
         //insert dataset into the login table 
         $insertLogin = "INSERT INTO login_tbl VALUES('$empId','$empEmail','$newPwd','$empJobTitle',1,0);";
 

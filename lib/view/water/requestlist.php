@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="card border-info py-2 px-2">
         <div class="row">
             <div class="col-6">
                 <h5>All Request List</h5>
@@ -17,7 +17,7 @@
                     <td>Name</td>
                     <td>Date</td>
                     <td>Capasity</td>
-                    <td>Remark</td>
+                    <td>Price</td>
                     <td>Status</td>
                     <td>Action</td>
                 </tr>
@@ -106,7 +106,7 @@
         }).then((result) => {
         if (result.isConfirmed) 
         {
-            $.get("../routes/water/delete_gulley.php",{
+            $.get("../routes/water/delete_water.php",{
                 uid:oid
             },function (res) {
                 if(res="ok"){
@@ -232,4 +232,48 @@
         }
         });
     }
+
+    function feedback(id) {
+            Swal.fire({
+                icon:'question',
+                title: 'feedback for This Job',
+                input: 'text',utValue: 2,
+                showCancelButton: true,
+                confirmButtonText: 'Rate Now',
+                showLoaderOnConfirm: true,
+                preConfirm: function (value) {
+                    $.get("../routes/water/feedback.php", {
+                            id: id,
+                            rate: value
+                        }, function (res) {
+                            if (res = "ok") {
+
+                                Swal.fire(
+                                    'Rated!',
+                                    'You feedback Sucessfully.',
+                                    'success'
+                                )
+
+                            } else {
+                                Swal.fire(
+                                    'Somethin Wrong',
+                                    'You cant feedback now.',
+                                    'error')
+                            }
+
+                        }
+
+                    )
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {}
+            })
+        }
+
+        function bill($oid){
+  window.open("invoice/waterprint.php?id="+$oid+"",
+                    " Aqua Guard", "width=600, height=600");
+}
+
+
     </script>

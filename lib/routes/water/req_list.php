@@ -4,10 +4,9 @@
 include_once('../../function/waterFunction.php');
 
 //call the class and create an object 
-$prdObj = new Water();
+$userObj = new Water();
 
-$result = $prdObj -> getallplantdrop();
-
+$result = $userObj -> waterList($_GET['id']);
 
 echo($result);
 

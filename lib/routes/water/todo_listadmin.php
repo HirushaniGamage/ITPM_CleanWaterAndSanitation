@@ -5,7 +5,7 @@ include_once('../../function/waterFunction.php');
 
 $empObj = new Water();
 
-$result = $empObj -> reqtodoAS($_GET['searchData']);
+$result = $empObj -> reqtodoA($_GET['plant']);
 
 echo($result);
 

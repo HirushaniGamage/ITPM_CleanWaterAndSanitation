@@ -11,7 +11,7 @@
                 
             </div>
             <div class="form-group mt-3">
-            <label for="name">Capacity</label>
+            <label for="name">Daily Capacity</label>
                 <input type="number" name="Capacity" id="Capacity" class="form-control"
                     placeholder="Enter Plant Capacity">
                 
@@ -41,6 +41,10 @@
                         data: $("#registrationForm").serialize(),
                         success: function (res) {
                             if (res == "1") {
+                                //clear input fields
+                                $("#name").val("");
+                                $("#Capacity").val(0);
+
                                 Swal.fire({
                                     icon: 'success',
                                     text: 'Successfully added',

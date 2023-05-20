@@ -142,7 +142,7 @@
      function Accept(oid){
         Swal.fire({
             icon: 'warning',
-            title: 'Submit Job Price and Conform',
+            title: 'Submit Job Price(Rs) and Confirm',
             input: 'number',
             id:"rangec",
             inputValue: 0.00,
@@ -157,7 +157,7 @@
                 if(res="ok"){
                     Swal.fire(
                     'Successful!',
-                    'Your Request Declare Successfully.',
+                    'Request Accept Successfully.',
                     'success'
                     )
 
@@ -171,12 +171,12 @@
                 else if (res="no"){
                     Swal.fire(
                     'Somethin Wrong',
-                    'You can not declare this request.',
+                    'You can not Accept this request.',
                     'error')
                 }else{
                     Swal.fire(
                     'Somethin Wrong',
-                    'Can not declare request.',
+                    'Can not Accept request.',
                     'error')
                 }
             })

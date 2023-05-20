@@ -4,6 +4,7 @@
                 <h5>All Feedbacks</h5>
                 <input type="hidden" name="cby" id="uid" class="form-control" placeholder="Name">
             </div>
+           
         </div>
         <hr>
         <div id="list">
@@ -27,7 +28,7 @@
          
          $(document).ready(function(){
        
-        $.get("../routes/gulley/feedback_listadmin.php",{}, function (res) {
+        $.get("../routes/water/feedback_listadmin.php",{}, function (res) {
         //display data 
         $("#emp_list").html(res);
         })

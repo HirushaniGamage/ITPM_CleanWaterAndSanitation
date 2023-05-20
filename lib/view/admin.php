@@ -49,15 +49,21 @@ include_once('../layout/app.php');
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" id="allwaterrequesttodo">
                                 <i class="fas fa-hand-holding-water"></i>
                                 <span>All Water Jobs</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" id="waterfeedbacks">
                                 <i class="fas fa-comment"></i>
                                 <span>All Water Feedbacks</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" id="waterreport">
+                            <i class="fas fa-chart-line"></i>
+                                <span>Water supplying Report</span>
                             </a>
                         </li>
                         <hr style="color:white;">
@@ -78,6 +84,30 @@ include_once('../layout/app.php');
                                 <i class="fas fa-comment"></i>
                                 <span>All Gulley Feedbacks</span>
                             </a>
+                        </li>
+                        <li>
+                            <a href="#" id="gulleyreporrt2">
+                            <i class="fas fa-chart-line"></i>
+                                <span>Gulley supplying Report</span>
+                            </a>
+                        </li>
+                        <hr style="color:white;">
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Plant Location</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a id="add_Plant">Add Plant Location</a>
+                                    </li>
+                                    <li>
+                                        <a id="edit_Plant">Edit Plant Location</a>
+                                    </li>
+                                   
+                                </ul>
+                            </div>
                         </li>
                         <hr style="color:white;">
                         <li class="sidebar-dropdown">
@@ -123,6 +153,7 @@ include_once('../layout/app.php');
             </li>
             <li>
                     </ul>
+                    </ul>
                 </div>
                 <!-- End sidebar-menu  -->
             </div>
@@ -151,21 +182,41 @@ include_once('../layout/app.php');
                                                         //chek the user session
                                                     if(empty($_SESSION['user_id'])){}
                                                     else{print_r($_SESSION['user_id']);}?>" id="userid" name="cby">
-            <div class="container" id="adminloadContent">
-                <img src="../upload/ui/Admin-bro.png"
-                    style="width:30%; display: block; margin-left: auto; margin-right: auto; margin-top:100px; margin-bottom:20px;"
+            <div class="container" id="adminloadContent" style="background-color:#C1D7E8;">
+                <img src="../upload/ui/AQUA GUARD.png"
+                    style="width:50%; display: block; margin-left: auto; margin-right: auto; margin-top:10px; margin-bottom:20px;"
                     alt="">
+               
+
+    
+                   
             </div>
         </main>
     </div>
 </body>
 <script>
+    $('#waterreport').click(function () {
+        window.open("invoice/waterprint2.php"," Aqua Guard", "width=600, height=600");
+    });
+
+    $('#gulleyreporrt2').click(function () {
+        window.open("invoice/gulleyprint2.php"," Aqua Guard", "width=600, height=600");
+    });
+
     $('#allgulleyrewuest').click(function () {
         $('#adminloadContent').load('gulley/allrequest.php');
     });
 
     $('#allwaterrewuest').click(function () {
         $('#adminloadContent').load('water/allrequest.php');
+    });
+
+    $('#allwaterrequesttodo').click(function () {
+        $('#adminloadContent').load('water/allrequesttodo.php');
+    });
+
+    $('#waterfeedbacks').click(function () {
+        $('#adminloadContent').load('water/allrequestrate.php');
     });
 
     $('#todojobcards').click(function () {

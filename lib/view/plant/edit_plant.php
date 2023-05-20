@@ -16,7 +16,11 @@
                 <tr class="table-success">
                     <th scope="row">Plant Id</th>
                     <td>Plant Location Name</td>
+<<<<<<< HEAD
                     <td>Daily Capacity of the Plant</td>
+=======
+                    <td>Capacity of the Plant</td>
+>>>>>>> c8faccc87f7d5ea02ef8cd1475f3fe17a7183b95
                     <td>Action</td>
                 </tr>
             </thead>

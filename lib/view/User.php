@@ -26,7 +26,7 @@ include_once('../layout/app.php');
     <style>
         #cardCOP{
     border-radius:0.5rem;
-    max-width:35ch;
+    max-width:55ch;
     transition: transform 500ms ease;
 }
 
@@ -36,22 +36,14 @@ include_once('../layout/app.php');
 
 #cardCOP1{
     border-radius:0.5rem;
-    max-width:35ch;
+    max-width:55ch;
     transition: transform 500ms ease;
 }
 
 #cardCOP1:hover{
     transform: scale(1.1);
 }
-#cardCOP2{
-    border-radius:0.5rem;
-    max-width:35ch;
-    transition: transform 500ms ease;
-}
 
-#cardCOP2:hover{
-    transform: scale(1.1);
-}
 
         #bodyUO {
             background: url("../upload/ui/bottle-2032980_1920.jpg")no-repeat center fixed;
@@ -65,40 +57,32 @@ include_once('../layout/app.php');
 <body id="bodyUO">
   <div class="container py-5">
     <div class="row py-5">
-      <div class="col-4 py-5 px-5">
+      <div class="col-6 py-5 px-5">
         <div class="card shadow card border-info" id="cardCOP" name="01">
           <div>
-            <img src="../upload/ui/truck-downloads-water-from-the-river-from-vector-41873568.jpg"  class="img-fluid card-img-top">
+            <img src="../upload/ui/truck-downloads-water-from-the-river-from-vector-41873568.jpg"  class="img-fluid card-img-top" style="height:320px;">
           </div>
           <div class="card-body">
             <h3 class="card-title">Water Service</h3>
-            <h7>Lorem ipsum dolor sit amet consectetur adipisicing elit. ea consequuntur?</h7>
+            <h7>We fulfil your water shortage</h7><br/>
+            <h7>Providing clean water for drinking and other purposes</h7>
           </div>
         </div>
       </div>
   
-      <div class="col-4 py-5 px-5">
+      <div class="col-6 py-5 px-5">
        <div class="card shadow card border-info" id="cardCOP1">
           <div>
-            <img src="../upload/ui/a-sewer-pumps-out-waste-from-the-sewer-vector-43258629.jpg" alt="image2" class="img-fluid card-img-top">
+            <img src="../upload/ui/a-sewer-pumps-out-waste-from-the-sewer-vector-43258629.jpg" alt="image2" class="img-fluid card-img-top" style="height:320px;">
           </div>
           <div class="card-body">
           <h3 class="card-title">Gulley Services</h3>
-          <h7>Quod repellat, nam nulla vitae voluptatibus vel quos eius itaque, alias, ea consequuntur?</h7>
+          <h7>The most efficient gulley sevice providers..</h7><br/>
+          <h7>We areremoving all of fecal waste and dirty waterin your area</h7>
           </div>
         </div>
       </div>
-      <div class="col-4 py-5 px-5">
-        <div class="card shadow card border-info" id="cardCOP2">
-          <div>
-            <img src="../upload/ui/istockphoto-1304604966-612x612.jpg" alt="image3" class="img-fluid card-img-top">
-          </div>
-          <div class="card-body">
-          <h3 class="card-title">Water Testing</h3>
-          <h7>Make Your Dream Place with us, Designing, All Items selecting and Fixing</h7>
-          </div>
-        </div>
-      </div>
+   
     </div>
   </div>
 </body>

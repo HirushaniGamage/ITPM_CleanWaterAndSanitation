@@ -27,7 +27,7 @@
             <label for="">Request Date</label>
                 <input type="date" name="date" id="date" class="form-control">
             </div>
-           
+            <label for="">Remark</label>
             <div class="form-group mt-2">
             <label for="">Request Capacity</label>
                 <input type="number" name="capacity" id="capacity" class="form-control">
@@ -37,7 +37,7 @@
                 <input type="text" name="remark" id="remark" class="form-control" placeholder="Remark">
             </div>
             <div class="form-group my-3 mt-2">
-                <button id="btnAddreq" class="btn btn-success">Add Request</button>
+                <button id="btnAddreq" Onclick="return false" class="btn btn-success">Add Request</button>
             </div>
         </form>
         </div>
@@ -57,8 +57,23 @@
     $("#uid").val($uid);
 
      $(document).on('click','#btnAddreq',function(e){
+        
+        //validation function
+        var name  = $("#name").val();
+        var number = $("#number").val();
+        var address = $("#address").val();
+        var plant = $("#plants").val();
 
-
+        if(name == "" || number == "" || plant == "" || address == ""){
+            Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'please fill all required fields',
+                    showConfirmButton: false,
+                    timer: 1500
+                    })
+        }else{
+            
         e.preventDefault();
         var form = $("#addreqtForm")[0];
 
@@ -105,7 +120,7 @@
                             timer: 1500
                             })
                 }
-                else{
+                else if(data == "07"){
                    Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -120,5 +135,6 @@
             }
             
         });
+    }
     });
 </script>

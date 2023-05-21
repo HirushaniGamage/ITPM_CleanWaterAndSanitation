@@ -14,11 +14,11 @@ class Water extends Main{
 
   public function addplant($name, $Capacity){
 
-    //generate new id for a product
+    //generate new id 
     $autoNumber = new AutoNumber;
     $Id = $autoNumber -> NumberGeneration("id","plant_tbl","PLN");
  
-    //insert product to databace
+    //insert  to databace
   
    $sqlInsert2 = "INSERT INTO plant_tbl VALUES('$Id','$name','$Capacity',0);";
  
@@ -270,7 +270,7 @@ $currentusage = 0.00;
   if($sqlResult1>0){
     return("01");
   }else{
-  return("Please Try again later!");
+  return("07");
   }
   }
 }
@@ -353,7 +353,7 @@ if($nor > 0){
     $status = "";
     $buttons = "";
     if($rec['admin'] == 0){ 
-      $status = '<span class="badge bg-warning">Warning for approval</span>';
+      $status = '<span class="badge bg-warning">Waiting for approval</span>';
       $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
     else if($rec['admin'] == 2){ 
       $status = '<span class="badge bg-warning">Rejected</span>';}
@@ -384,7 +384,7 @@ else {echo('
 }
 
 
-public function delete_water($uid){
+public function delete_gulley($uid){
   $update1 = "UPDATE water_tbl SET d_status = 1 WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){
@@ -421,6 +421,29 @@ $sqlResult = $this->dbResult->query($sqlSelect);
 
 function editdata($id,$un,$ph,$add,$da,$rk,$le,$cp){
 
+  $currentusage = 0.00;
+
+  $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND date ='$da' AND admin = 1 AND price != 0 ORDER BY id ASC;";
+   //lets check the errors 
+    if($this->dbResult->error){
+    echo($this->dbResult->error);
+    exit;
+   }
+ //sql execute 
+ $sqlResult = $this->dbResult->query($sqlSelect);
+
+  //check the number of rows
+  $nor = $sqlResult->num_rows;
+
+  if($nor > 0){
+    while($rec = $sqlResult->fetch_assoc()){
+      $currentusage = $currentusage + $rec['capacity'];
+    }
+  }
+  $balance = $avalablevapacity - $currentusage;
+  if($balance < $cp){
+    return("03");
+  }else{
   $update1 = "UPDATE water_tbl SET name='$un', phone='$ph', address ='$add',
   water_tbl.date ='$da', remark='$rk', capacity='$cp'  WHERE  id='$id' AND d_status = 0;";
      //lets check the errors 
@@ -431,6 +454,7 @@ function editdata($id,$un,$ph,$add,$da,$rk,$le,$cp){
    //sql execute 
    $sqlResult = $this->dbResult->query($update1);
        return("ok"); 
+    }
 }
 
 
@@ -465,7 +489,7 @@ public function waterListA(){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
            
        </tr>
               ');
@@ -512,7 +536,7 @@ public function reqSearchA($searchData){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
            
        </tr>
               ');

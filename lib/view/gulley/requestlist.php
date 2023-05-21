@@ -238,7 +238,9 @@
                             )
 
                             $id = $("#userid").val();
-                            $.get("../routes/gulley/req_listadmin.php", function (res) {
+                            $.get("../routes/gulley/req_list.php", {
+                                id: $id
+                            }, function (res) {
                                 //display data 
                                 $("#emp_list").html(res);
                             })

@@ -27,7 +27,7 @@
             <label for="">Request Date</label>
                 <input type="date" name="date" id="date" class="form-control">
             </div>
-            <label for="">Remark</label>
+           
             <div class="form-group mt-2">
             <label for="">Request Capacity</label>
                 <input type="number" name="capacity" id="capacity" class="form-control">

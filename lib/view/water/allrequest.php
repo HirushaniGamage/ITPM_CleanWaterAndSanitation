@@ -104,7 +104,7 @@
 function Accept(oid){
         Swal.fire({
             icon: 'warning',
-            title: 'Submit Job Price and Conform',
+            title: 'Submit Job Price(Rs) and Confirm',
             input: 'number',
             id:"rangec",
             inputValue: 0.00,
@@ -136,7 +136,7 @@ function Accept(oid){
                     'error')
                 }else{
                     Swal.fire(
-                    'Somethin Wrong',
+                    'Something Wrong',
                     'Can not Accept request.',
                     'error')
                 }

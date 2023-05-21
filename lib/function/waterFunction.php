@@ -197,6 +197,19 @@ function getallplantdrop(){
 
 public function makerequest($name, $phone, $user, $address, $date, $remark, $capacity, $plantid){
 
+  $sqlSelectch = "SELECT * FROM water_tbl WHERE phone = '$phone' AND user_id = '$user' AND 
+  address = '$address' AND date = '$date' AND capacity = '$capacity';";
+  //lets check the errors 
+   if($this->dbResult->error){
+   echo($this->dbResult->error);
+   exit;
+  }
+//sql execute 
+$sqlResultch = $this->dbResult->query($sqlSelectch);
+
+$norch = $sqlResultch->num_rows;
+
+if($norch == 0){
   $sqlSelect = "SELECT * FROM plant_tbl WHERE id = '$plantid';";
   //lets check the errors 
    if($this->dbResult->error){
@@ -261,7 +274,7 @@ $currentusage = 0.00;
   }
   }
 }
-   
+}
 }//end of add product
 
 // this function use to get product liat to admin page
@@ -285,12 +298,12 @@ public function waterList($id){
       $status = "";
       $buttons = "";
       if($rec['admin'] == 0){ 
-        $status = '<span class="badge bg-warning">Warning for approval</span>';
+        $status = '<span class="badge bg-warning">Waiting for approval</span>';
         $buttons = '<button type="button" onclick="editreq(\''.$rec['id'].'\');" class="btn btn-warning">Edit</button> <button type="button" onclick="delete_req(\''.$rec['id'].'\');" class="btn btn-danger">Delete</button>';}
       else if($rec['admin'] == 2){ 
         $status = '<span class="badge bg-warning">Rejected</span>';}
       else if($rec['done'] == 0){ 
-        $status = '<span class="badge bg-danger">Waiting for date</span>';}
+        $status = '<span class="badge bg-success">Accepted</span>';}
       else if($rec['done'] == 1){ 
         $status = '<span class="badge bg-success">Completed</span>';
         $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
@@ -345,7 +358,7 @@ if($nor > 0){
     else if($rec['admin'] == 2){ 
       $status = '<span class="badge bg-warning">Rejected</span>';}
     else if($rec['done'] == 0){ 
-      $status = '<span class="badge bg-danger">Waiting for date</span>';}
+      $status = '<span class="badge bg-danger">Accepted</span>';}
     else if($rec['done'] == 1){ 
       $status = '<span class="badge bg-success">Completed</span>';
       $buttons = '<button type="button" onclick="feedback(\''.$rec['id'].'\');" class="btn btn-info">Add Feedback</button><button type="button" onclick="bill(\''.$rec['id'].'\');" class="btn btn-info mx-2">Print bill</button></td>';}
@@ -371,7 +384,7 @@ else {echo('
 }
 
 
-public function delete_gulley($uid){
+public function delete_water($uid){
   $update1 = "UPDATE water_tbl SET d_status = 1 WHERE  id = '$uid' AND d_status = 0;";
   //lets check the errors 
    if($this->dbResult->error){
@@ -438,7 +451,7 @@ public function waterListA(){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
       else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
       else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
@@ -452,7 +465,7 @@ public function waterListA(){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
            
        </tr>
               ');
@@ -485,7 +498,7 @@ public function reqSearchA($searchData){
   if($nor > 0){
     while($rec = $sqlResult->fetch_assoc()){
       $status = "";
-      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Warning for approval</span>';}
+      if($rec['admin'] == 0){ $status = '<span class="badge bg-warning">Waiting for approval</span>';}
       else if($rec['admin'] == 2){ $status = '<span class="badge bg-warning">Re-Date requesting</span>';}
       else if($rec['done'] == 0){ $status = '<span class="badge bg-danger">Waiting for date</span>';}
       else if($rec['done'] == 1){ $status = '<span class="badge bg-success">Completed</span>';}
@@ -499,7 +512,7 @@ public function reqSearchA($searchData){
           <td>'.$rec['capacity'].'</td>
           <td>'.$rec['remark'].'</td>
           <td><button type="button" onclick="Accept(\''.$rec['id'].'\');" class="btn btn-success">Accept and price</button>
-           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Declare</button>
+           <button type="button" onclick="declare(\''.$rec['id'].'\');" class="btn btn-danger">Decline</button>
            
        </tr>
               ');
@@ -594,10 +607,10 @@ $sqlResult = $this->dbResult->query($update1);
 
 
   
- public function reqtodoAS($searchData, $input){
+ public function reqtodoAS($searchData){
 
   //sqlSearchData
-  $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND admin = 1 AND plani_id = '$input' AND (name LIKE '$searchData%' OR id  LIKE '$searchData%') ORDER BY id ASC;";
+  $sqlSelect = "SELECT * FROM water_tbl WHERE d_status = 0 AND admin = 1 AND (name LIKE '$searchData%' OR id  LIKE '$searchData%') ORDER BY id ASC;";
   
   //lets check the errors 
   if($this->dbResult->error){

@@ -59,7 +59,7 @@
     function declare(oid){
         Swal.fire({
         title: 'Are you sure?',
-        text: "Do You want to declare this request!",
+        text: "Do You want to decline this request!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
